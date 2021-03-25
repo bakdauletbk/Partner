@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/ivCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_x_icon"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="32dp"/>
+
+    <TextView
+        android:id="@+id/tvAttention"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp"
+        android:text="Внимание!"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/tvAttention"
+        android:layout_marginEnd="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:text="Уважаемый партнёр !\n\nСогласно правилам сервиса доставки Pillikan вам необходимо строго соблюдать отведённые временные рамки для принятия и обработки поступающих заказов от пользователей приложения Pillikan.
+
+\n\nВсе правила и требования изложены в инструкциях по работе с системой Pillikan в разделе F.A.Q. приложения Pillikan Business.
+
+\n\nВАЖНО !
+
+\n\nЗа нарушение правил пользования системой Pillikan предусмотрены санкции виде штрафов. Подробности в договоре публичной оферты на сайте www.pillikan.kz"/>
+    </LinearLayout>
+</RelativeLayout>

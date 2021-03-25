@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_accept_order"
+    app:startDestination="@id/acceptOrderFragment">
+
+    <fragment
+        android:id="@+id/confirmOrderFragment"
+        android:name="kz.smartideagroup.partner.content.view.accept_order.ConfirmOrderFragment"
+        android:label="ConfirmOrderFragment"
+        tools:layout="@layout/fragment_confirm_order"/>
+    <fragment
+        android:id="@+id/acceptOrderFragment"
+        android:name="kz.smartideagroup.partner.content.view.accept_order.AcceptOrderFragment"
+        android:label="AcceptOrderFragment"
+        tools:layout="@layout/fragment_accept_order">
+        <action
+            android:id="@+id/action_acceptOrderFragment_to_confirmOrderFragment"
+            app:destination="@id/confirmOrderFragment" />
+    </fragment>
+</navigation>

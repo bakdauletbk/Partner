@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="30dp"
+    android:layout_marginTop="7.5dp"
+    android:layout_marginEnd="30dp"
+    android:layout_marginBottom="7.5dp"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="3dp">
+
+    <RelativeLayout
+        android:id="@+id/rl_running_cook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green">
+
+        <TextView
+            android:id="@+id/tv_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/dimens_13dp"
+            android:layout_marginTop="@dimen/dimens_9dp"
+            android:text="@string/order"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="RelativeOverlap" />
+
+        <TextView
+            android:id="@+id/tv_order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/dimens_3dp"
+            android:layout_marginTop="@dimen/dimens_9dp"
+            android:layout_toEndOf="@+id/tv_order"
+            android:text="@string/loading"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="RelativeOverlap" />
+
+        <TextView
+            android:id="@+id/tv_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_order_id"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/dimens_13dp"
+            android:layout_marginTop="@dimen/dimens_17dp"
+            android:layout_marginBottom="@dimen/dimens_15dp"
+            android:paddingBottom="@dimen/dimens_5dp"
+            android:text="@string/detailed"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/ll_cook_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/dimens_17dp"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dimens_7dp">
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="@dimen/dimens_1dp"
+                android:layout_height="@dimen/dimens_42dp"
+                android:backgroundTint="@color/green"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:id="@+id/rl_progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dimens_5dp">
+
+                <ProgressBar
+                    android:id="@+id/pb_timer"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="@dimen/dimens_42dp"
+                    android:layout_height="@dimen/dimens_42dp"
+                    android:background="@drawable/circle_shape"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progress="60"
+                    android:progressDrawable="@drawable/circular_progress_bar" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dimens_2dp"
+                    android:fontFamily="@font/whitney_bold"
+                    android:text="@string/zero"
+                    android:textColor="@color/white"
+                    android:textSize="19sp" />
+
+                <TextView
+                    android:id="@+id/tv_min"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_time"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dimens_7.minus.dp"
+                    android:text="@string/minute"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    tools:ignore="SmallSp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ready"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimens_5dp"
+                android:background="@drawable/btn_rounded_runnig"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_ready_food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimens_10dp"
+                    android:layout_marginTop="@dimen/dimens_2dp"
+                    android:layout_marginEnd="@dimen/dimens_10dp"
+                    android:layout_marginBottom="@dimen/dimens_4dp"
+                    android:gravity="center"
+                    android:text="@string/done"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

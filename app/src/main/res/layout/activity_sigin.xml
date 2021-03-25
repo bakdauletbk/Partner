@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/ll_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimens_100dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_logo_pillikan"
+                    tools:ignore="ContentDescription" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimens_20dp"
+                    android:background="@drawable/ic_logo_text"
+                    tools:ignore="ContentDescription" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_authorization"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_logo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimens_44dp"
+                android:text="@string/authorization"
+                android:textColor="@color/white"
+                android:textSize="21sp"
+                android:textStyle="normal" />
+
+            <LinearLayout
+                android:id="@+id/ll_sign_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_authorization"
+                android:layout_marginStart="@dimen/dimens_50dp"
+                android:layout_marginTop="@dimen/dimens_28dp"
+                android:layout_marginEnd="@dimen/dimens_50dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimens_3dp"
+                    android:fontFamily="@font/whitney_book"
+                    android:text="@string/text_login"
+                    android:textColor="@color/gray_edit"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/et_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/gray_edit"
+                    android:fontFamily="@font/whitney_book"
+                    android:hint="@string/enter_login"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/gray_edit"
+                    android:textSize="16sp"
+                    tools:ignore="Autofill,LabelFor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimens_3dp"
+                    android:layout_marginTop="@dimen/dimens_20dp"
+                    android:fontFamily="@font/whitney_book"
+                    android:text="@string/password"
+                    android:textColor="@color/gray_edit"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#CCFFFFFF"
+                    android:fontFamily="@font/whitney_book"
+                    android:hint="@string/enter_password"
+                    android:inputType="textPassword"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/gray_edit"
+                    android:textSize="16sp"
+                    tools:ignore="Autofill" />
+
+            </LinearLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_sign_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_sign_in"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="@dimen/dimens_50dp"
+                android:layout_marginTop="@dimen/dimens_50dp"
+                android:layout_marginEnd="@dimen/dimens_50dp"
+                android:layout_marginBottom="@dimen/dimens_50dp"
+                android:backgroundTint="@color/white"
+                android:paddingVertical="@dimen/dimens_15dp"
+                android:text="@string/to_come_in"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/blue_text"
+                android:textSize="16sp"
+                app:cornerRadius="@dimen/dimens_20dp" />
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/loadingView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#54000000"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_white_foreground" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#16191C</color>
+    <color name="purple_500">#FFFFFF</color>
+    <color name="purple_700">#16191C</color>
+    <color name="teal_200">#16191C</color>
+    <color name="teal_700">#16191C</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="background">#16191C</color>
+    <color name="background_bottom">#1F2327</color>
+    <color name="period">#040506</color>
+    <color name="text_red">#E40A0A</color>
+    <color name="green">#07AF36</color>
+    <color name="blue">#329CB8</color>
+    <color name="gray">#C4C4C4</color>
+    <color name="black_text">#16191C</color>
+    <color name="red_color">#E40A0A</color>
+    <color name="red">#CCC61515</color>
+    <color name="orange">#F5982F</color>
+    <color name="orange_categories">#FF9800</color>
+    <color name="blue_business">#2D47A1</color>
+    <color name="white_blue">#E1F5FE</color>
+    <color name="blue_text">#29A3BA</color>
+    <color name="gray_edit">#CCFFFFFF</color>
+    <color name="blue_reports">#4FB8BF</color>
+    <color name="orange_white">#FFB800</color>
+    <color name="gray_color_calendar">#DCDCDC</color>
+    <color name="gray_color_comments">#4DC4C4C4</color>
+    <color name="yellow">#C5E1A5</color>
+    <color name="blue_text_color">#27BBC0</color>
+    <color name="dark_gray">#4A4C4E</color>
+
+    <color name="gray_text">#49555B</color>
+
+    //Delivery Open
+    <color name="open">#07AF36</color>
+    <color name="close">#E40A0A</color>
+
+</resources>

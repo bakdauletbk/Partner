@@ -1,0 +1,103 @@
+<resources>
+    <string name="app_name">Partner</string>
+    <string name="text_login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="home">Главная</string>
+    <string name="delivery">Доставка</string>
+    <string name="reports">Отчеты</string>
+    <string name="notification">Уведомления</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="authorization">АВТОРИЗАЦИЯ</string>
+    <string name="to_come_in">Войти</string>
+    <string name="enter_login">Введите логин</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="cash_box">Касса</string>
+    <string name="yet">Еще</string>
+    <string name="menu">Меню</string>
+    <string name="report">Отчет</string>
+    <string name="finish">Завершено</string>
+    <string name="transactions">Транзакции</string>
+    <string name="c_test">c</string>
+    <string name="on">по</string>
+    <string name="about">О Нас</string>
+    <string name="faq">F.A.Q</string>
+    <string name="loading">Загрузка…</string>
+    <string name="exit">Выйти</string>
+    <string name="order">Заказ</string>
+    <string name="utensils">Приборы x</string>
+    <string name="total">Итого</string>
+    <string name="cooking_time">Время готовки</string>
+    <string name="address">Адрес</string>
+    <string name="comments">Комментарии</string>
+    <string name="status">Статус</string>
+    <string name="print">Печать</string>
+    <string name="done">Готово</string>
+    <string name="version">Версия:</string>
+    <string name="call_center_phone">‎+7 (775) 007 4230</string>
+    <string name="zero">0</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="accept_payment">Принять оплату</string>
+
+    //Обработка ошибок
+    <string name="error_unknown_title">Что-то пошло не так…</string>
+    <string name="error_unknown_body">Пожалуйста проверьте ваше интернет соединение или попробуйте позднее</string>
+    <string name="error_pin_code_validate">Ваш пин код не правильный!</string>
+    <string name="error_failed_connection_to_server">Не удалось установить соединение с сервером: \n</string>
+    <string name="error_no_internet_title">Отсутствует интернет соединение</string>
+    <string name="error_no_internet_msg">Пожалуйста проверьте ваше интернет соединение и попробуйте ещё раз</string>
+    <string name="error_auth_wrong_data_title">Авторизация не пройдена</string>
+    <string name="error_auth_wrong_data_msg">Вы ввели неверный логин или пароль. Пожалуйста, проверьте ваши данные и попробуйте ещё раз</string>
+    <string name="an_error_occurred_while_logging_out">Произошла ошибка при выходе из аккаунта!</string>
+    <string name="unfortunately_your_status_has_not_been_sent">К Сожелению ваше статус не отправлено!</string>
+    <string name="your_status_has_been_sent">Ваша статус отправлено!</string>
+    <string name="error_receiving_order">Ошибка при получение заказа!</string>
+    <string name="take_time_to_prepare_your_meal">Выберите время для подготовки еды!</string>
+    <string name="error_while_logging_out_of_profile">Ошибка при выходе из профиля!</string>
+
+    //Диалог
+    <string name="dialog_retry">Ещё раз</string>
+    <string name="dialog_exit">Выйти</string>
+    <string name="dialog_ok">Oк</string>
+    <string name="detailed">Подробнее</string>
+    <string name="minute">мин</string>
+    <string name="commission">Комиссия</string>
+    <string name="cancel">Отмена</string>
+    <string name="ok">Ок</string>
+
+    //Status Order
+    <string name="send_order">Передать курьеру</string>
+    <string name="transfer_to_client">Передать клиенту</string>
+
+    //Status retail
+    <string name="open_deliver">Доставка включена</string>
+    <string name="close_delivery">Доставка отключена</string>
+
+    //Order status
+    <string name="food_prepare">Готовится</string>
+    <string name="prepared">Приготовлен</string>
+    <string name="on_delivery">На доставке</string>
+    <string name="completed">Завершено</string>
+    <string name="the_client_approached">Клиент подошёл?</string>
+    <string name="the_courier_arrived">Курьер подьехал?</string>
+    <string name="accept_order">Принять заказ</string>
+    <string name="select_a_cooking_time">Выбрать время готовки</string>
+    <string name="ten_minute">10 мин</string>
+    <string name="twenty_minute">20 мин</string>
+    <string name="thirty_minute">30 мин</string>
+    <string name="forty_minute">40 мин</string>
+    <string name="fifty_minute">50 мин</string>
+    <string name="time_to_confirm">Время на подверждение:</string>
+    <string name="zero_money">0 тг</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="empty">Нет данных для отображения</string>
+
+</resources>

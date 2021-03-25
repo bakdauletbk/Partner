@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_calendar_view"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_food_retail"
+        android:layout_width="@dimen/dimens_170dp"
+        android:layout_height="@dimen/dimens_162dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimens_33dp"
+        android:src="@drawable/image_delivery_man" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimens_38dp"
+        android:text="@string/the_courier_arrived"
+        android:textColor="#040506"
+        android:textSize="18sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_delivery_man"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimens_20dp"
+        android:layout_marginTop="@dimen/dimens_21dp"
+        android:layout_marginEnd="@dimen/dimens_20dp"
+        android:layout_marginBottom="@dimen/dimens_12dp"
+        android:backgroundTint="@color/blue_text"
+        android:paddingVertical="@dimen/dimens_10dp"
+        android:text="@string/send_order"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:cornerRadius="@dimen/dimens_10dp" />
+
+</LinearLayout>

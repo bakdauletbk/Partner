@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimens_75dp"
+    android:layout_marginStart="@dimen/dimens_30dp"
+    android:layout_marginTop="@dimen/dimens_7.5dp"
+    android:layout_marginEnd="@dimen/dimens_30dp"
+    android:layout_marginBottom="@dimen/dimens_7.5dp"
+    android:background="@drawable/shape_item_finish"
+    app:cardElevation="@dimen/dimens_3dp">
+
+    <TextView
+        android:id="@+id/tv_order_finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimens_13dp"
+        android:layout_marginTop="@dimen/dimens_11dp"
+        android:text="@string/order"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_order_id_finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimens_3dp"
+        android:layout_marginTop="@dimen/dimens_11dp"
+        android:layout_toEndOf="@+id/tv_order_finish"
+        android:text="@string/loading"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_detail_finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/dimens_16dp"
+        android:layout_marginBottom="@dimen/dimens_9dp"
+        android:text="@string/detailed"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

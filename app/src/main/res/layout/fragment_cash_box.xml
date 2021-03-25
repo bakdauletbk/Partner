@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarCashBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="Касса"
+                app:titleTextColor="@color/white" />
+
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimens_10dp"
+                android:layout_marginEnd="@dimen/dimens_10dp"
+                android:background="@drawable/shape_cashbox"
+                android:paddingVertical="@dimen/dimens_5dp">
+
+                <TextView
+                    android:id="@+id/tv_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:drawableEnd="@drawable/ic_tng_icon"
+                    android:hint="@string/zero"
+                    android:textColor="@color/background"
+                    android:textColorHint="@color/background"
+                    android:textSize="48sp"
+                    android:textStyle="bold"
+                    tools:ignore="UseCompatTextViewDrawableXml" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimens_14dp"
+                android:layout_marginTop="@dimen/dimens_35dp"
+                android:layout_marginEnd="@dimen/dimens_14dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimens_80dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_one"
+                        android:layout_width="@dimen/dimens_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/gray"
+                        android:text="@string/one"
+                        android:textColor="@color/background"
+                        android:textSize="36sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="@dimen/dimens_8dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_two"
+                        android:layout_width="@dimen/dimens_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/dimens_14dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/gray"
+                        android:text="@string/two"
+                        android:textColor="@color/background"
+                        android:textSize="36sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="@dimen/dimens_8dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_three"
+                        android:layout_width="@dimen/dimens_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/dimens_14dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/gray"
+                        android:text="@string/three"
+                        android:textColor="@color/background"
+                        android:textSize="36sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="@dimen/dimens_8dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_four"
+                        android:layout_width="@dimen/dimens_0dp"
+                        android:layout_height="@dimen/dimens_80dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/gray"
+                        android:text="@string/four"
+                        android:textColor="@color/background"
+                        android:textSize="36sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="@dimen/dimens_8dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_five"
+                        android:layout_width="@dimen/dimens_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/dimens_14dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/gray"
+                        android:text="@string/five"
+                        android:textColor="@color/background"
+                        android:textSize="36sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="@dimen/dimens_8dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_six"
+                        android:layout_width="@dimen/dimens_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/dimens_14dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/gray"
+                        android:text="@string/six"
+                        android:textColor="@color/background"
+                        android:textSize="36sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="@dimen/dimens_8dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_seven"
+                        android:layout_width="@dimen/dimens_0dp"
+                        android:layout_height="@dimen/dimens_80dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/gray"
+                        android:text="@string/seven"
+                        android:textColor="@color/background"
+                        android:textSize="36sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="@dimen/dimens_8dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_eight"
+                        android:layout_width="@dimen/dimens_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/dimens_14dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/gray"
+                        android:text="@string/eight"
+                        android:textColor="@color/background"
+                        android:textSize="36sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="@dimen/dimens_8dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_nine"
+                        android:layout_width="@dimen/dimens_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/dimens_14dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/gray"
+                        android:text="@string/nine"
+                        android:textColor="@color/background"
+                        android:textSize="36sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="@dimen/dimens_8dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimens_80dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <View
+                        android:layout_width="@dimen/dimens_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_zero"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/dimens_14dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/gray"
+                        android:text="@string/zero"
+                        android:textColor="@color/background"
+                        android:textSize="36sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="@dimen/dimens_8dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_clear"
+                        android:layout_width="@dimen/dimens_0dp"
+                        android:layout_height="@dimen/dimens_70dp"
+                        android:layout_marginStart="@dimen/dimens_14dp"
+                        android:layout_marginTop="@dimen/dimens_9.minus.dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/ic_clear_shape"
+                        app:backgroundTint="@null"
+                        app:cornerRadius="@dimen/dimens_8dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_accept_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/dimens_10dp"
+                android:layout_marginStart="@dimen/dimens_50dp"
+                android:layout_marginTop="@dimen/dimens_45dp"
+                android:layout_marginEnd="@dimen/dimens_50dp"
+                android:background="@drawable/btn_rounded_cashbox"
+                android:text="@string/accept_payment"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
