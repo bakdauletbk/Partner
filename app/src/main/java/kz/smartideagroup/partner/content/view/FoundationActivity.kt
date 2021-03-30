@@ -28,19 +28,4 @@ class FoundationActivity : BaseActivity() {
         bottom_navigation.setupWithNavController(navController)
     }
 
-//    override fun onBackPressed() {
-//        if (exit) {
-//            val intent = Intent(Intent.ACTION_MAIN)
-//            intent.addCategory(Intent.CATEGORY_HOME)
-//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//            startActivity(intent)
-//        } else {
-//            Toast.makeText(
-//                this, "Для выхода снова нажмите «Назад».",
-//                Toast.LENGTH_SHORT
-//            ).show()
-//            exit = true
-//        }
-//    }
-
 }

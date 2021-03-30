@@ -28,16 +28,28 @@
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_category"
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimens_21dp"
-            android:layout_marginTop="@dimen/dimens_5dp"
-            android:layout_marginBottom="@dimen/dimens_5dp"
-            android:orientation="horizontal"
-            android:visibility="visible"
-            app:layout_collapseMode="pin" />
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimens_40dp"
+                android:layout_margin="@dimen/dimens_8dp"
+                android:background="@color/background"
+                android:visibility="gone"
+                app:tabGravity="center"
+                app:tabIndicator="@drawable/tab_indicator"
+                app:tabIndicatorAnimationMode="elastic"
+                app:tabIndicatorColor="@color/orange"
+                app:tabIndicatorGravity="stretch"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextColor="@color/white" />
+
+        </HorizontalScrollView>
+
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -47,19 +59,54 @@
         android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/ll_food_recycles"
+            <TextView
+                android:id="@+id/tv_empty_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimens_25dp"
-                android:layout_marginEnd="@dimen/dimens_25dp"
-                android:orientation="vertical"/>
+                android:layout_marginTop="@dimen/dimens_10dp"
+                android:gravity="center"
+                android:text="@string/empty"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
-        </RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_foods"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                />
+
+        </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:id="@+id/loadingView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#54000000"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_white_foreground" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

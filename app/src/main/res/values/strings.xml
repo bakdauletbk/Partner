@@ -99,5 +99,7 @@
     <string name="zero_money">0 тг</string>
     <string name="confirm">Подтвердить</string>
     <string name="empty">Нет данных для отображения</string>
+    <string name="close">Закрыть</string>
+    <string name="the_payment_was_successful">Оплата прошла успешно!</string>
 
 </resources>

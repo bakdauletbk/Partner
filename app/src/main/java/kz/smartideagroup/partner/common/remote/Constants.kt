@@ -2,13 +2,28 @@ package kz.smartideagroup.partner.common.remote
 
 object Constants {
     const val BASE_URL = "https://java.pillikan.org.kz"
+    const val BASE_IMAGE_URL = "https://st.pillikan.kz//delivery/"
     const val CLIENT_ID = "cmV0YWls"
+    const val DEFAULT_NOTIFICATION_CHANNEL_ID = "default_notification_channel_id"
+    const val CONTENT_TYPE = "application/json"
 
     const val RESPONSE_SUCCESS_CODE = 200
 
     const val PAGE_LIMIT = 10
 
     const val SERIALIZED_ORDER_COMPLETED = "SERIALIZED_ORDER_COMPLETED"
+
+    //FireBase
+    const val TYPE = "type"
+    const val NAME = "name"
+    const val DATA = "data"
+    const val PHONE = "phone"
+    const val ORDER_ID = "orderId"
+    const val PUSH_ORDER_ID = "PushOrderId"
+    const val PUSH_ORDER_NAME = "PushPayName"
+    const val PUSH_ORDER_PHONE = "PushPayPhone"
+    const val PUSH_DELIVERY = 3
+    const val PUSH_BY_MYSELF = 2
 
     //TYPE ORDER
     const val DELIVERY = 1
@@ -54,6 +69,8 @@ object Constants {
     const val PLUS = "+"
     const val MINUS = "-"
 
+    const val THREE = 3
+
     //Time Cook
     const val TEN_MINUTE = 10
     const val TWENTY_MINUTE = 20
@@ -69,7 +86,12 @@ object Constants {
     var monthTo = 0
     var yearTo = 0
 
-    //
+
     const val ONE_FLOAT = 1f
     const val TWO_FLOAT = 2f
+
+    const val PHONE_NUMBER = "+77750074230"
+    const val INSTAGRAM_LINK = "https://www.instagram.com/pillikan.kz/"
+    const val YOUTUBE_LINK = "https://www.youtube.com/channel/UCnJQ6k3GfN5tpKQMQ2v-ZrQ"
+    const val FAQ_LINK = "https://pillikan.kz/partners-faq"
 }

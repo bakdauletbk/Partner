@@ -36,6 +36,7 @@
             android:background="@color/background"
             app:tabBackground="@color/background"
             app:tabGravity="fill"
+            app:tabIndicatorColor="@color/white"
             android:minHeight="?attr/actionBarSize"
             app:tabMode="fixed"
             app:tabTextAppearance="@style/CustomTabStyle"

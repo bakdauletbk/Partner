@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_about_us.*
-import kotlinx.android.synthetic.main.fragment_menu.*
-import kotlinx.android.synthetic.main.fragment_menu.toolbarMenu
+import kz.smartideagroup.partner.BuildConfig
 import kz.smartideagroup.partner.R
+import kz.smartideagroup.partner.common.helpers.call
+import kz.smartideagroup.partner.common.helpers.openLink
+import kz.smartideagroup.partner.common.remote.Constants
 import kz.smartideagroup.partner.common.views.BaseFragment
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
 class AboutUsFragment : BaseFragment() {
 
@@ -36,9 +39,13 @@ class AboutUsFragment : BaseFragment() {
     }
 
     private fun lets() {
-        initViewModel()
         initToolbar()
+        setVersionName()
         initListeners()
+    }
+
+    private fun setVersionName() {
+        tv_version.text = BuildConfig.VERSION_NAME
     }
 
     private fun initToolbar() {
@@ -50,11 +57,18 @@ class AboutUsFragment : BaseFragment() {
     }
 
     private fun initListeners() {
-
-    }
-
-    private fun initViewModel() {
-
+        tv_number_call.onClick {
+            activity?.let { call(Constants.PHONE_NUMBER, requireContext(), it) }
+        }
+        iv_instagram.onClick {
+            activity?.let { openLink(Constants.INSTAGRAM_LINK, it) }
+        }
+        iv_youtube.onClick {
+            activity?.let { openLink(Constants.YOUTUBE_LINK, it) }
+        }
+        btn_faq.onClick {
+            activity?.let { openLink(Constants.FAQ_LINK, it) }
+        }
     }
 
 }

@@ -11,6 +11,8 @@ import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kz.smartideagroup.partner.R
 import kz.smartideagroup.partner.authorization.view.AuthorizationActivity
+import kz.smartideagroup.partner.common.helpers.openLink
+import kz.smartideagroup.partner.common.remote.Constants
 import kz.smartideagroup.partner.common.views.BaseFragment
 import kz.smartideagroup.partner.content.viewmodel.settings.SettingsViewModel
 import org.jetbrains.anko.sdk27.coroutines.onClick
@@ -78,6 +80,9 @@ class SettingsFragment : BaseFragment() {
         }
         btn_logout.onClick {
             viewModel.logout()
+        }
+        ll_faq.onClick {
+            activity?.let { openLink(Constants.FAQ_LINK, it) }
         }
     }
 

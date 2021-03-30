@@ -49,8 +49,8 @@ class AuthorizationActivity : BaseActivity() {
             when (it) {
                 true -> {
                     setLoading(false)
-                    finish()
                     startActivity(intentFor<FoundationActivity>())
+                    finish()
                 }
                 false -> onSuccessFullDialog()
             }

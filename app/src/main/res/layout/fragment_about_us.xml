@@ -54,23 +54,32 @@
                 android:background="@drawable/ic_logo_text"
                 tools:ignore="ContentDescription" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimens_10dp"
-                android:fontFamily="@font/whitney_book"
-                android:text="@string/version"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimens_10dp"
-                android:text="@string/loading"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimens_10dp"
+                    android:layout_marginEnd="@dimen/dimens_25dp"
+                    android:fontFamily="@font/whitney_book"
+                    android:text="@string/version"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimens_10dp"
+                    android:text="@string/loading"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"

@@ -8,14 +8,18 @@ import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kz.smartideagroup.partner.R
+import kz.smartideagroup.partner.authorization.view.AuthorizationActivity
 import kz.smartideagroup.partner.common.views.BaseFragment
 import kz.smartideagroup.partner.content.viewmodel.home.HomeViewModel
 import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.support.v4.intentFor
 
 class HomeFragment : BaseFragment() {
 
@@ -83,12 +87,37 @@ class HomeFragment : BaseFragment() {
         viewModel.retailName.observe(viewLifecycleOwner, {
             toolbar.title = it
         })
+        viewModel.isAuthorize.observe(viewLifecycleOwner, {
+            when (it) {
+                true -> {
+//                    getFirebaseToken()
+                }
+                false -> {
+                    startActivity(intentFor<AuthorizationActivity>())
+                    activity?.finish()
+                }
+            }
+        })
+    }
+
+    private fun getFirebaseToken() {
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    return@OnCompleteListener
+                }
+                val token = task.result!!.token
+                CoroutineScope(Dispatchers.IO).launch {
+                    viewModel.sendFireBaseToken(token)
+                }
+            })
     }
 
     private fun updateFeed() {
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.checkNetwork(requireContext())
         }
+        viewModel.getAuthorize()
         viewModel.getRetailName()
     }
 
