@@ -94,8 +94,11 @@ class DetailPageFragment : BaseFragment() {
             when (it) {
                 true -> {
                     setLoading(false)
-                    btn_ready.text = getString(R.string.send_order)
-
+                    when (orderDto?.status) {
+                        Constants.ORDER_COOKING -> orderDto?.status = Constants.ORDER_SEND
+                        Constants.ORDER_SEND -> orderDto?.status = Constants.ORDER_DELIVERED
+                    }
+                    setOrderInfo()
                 }
                 false -> {
                     setLoading(false)
@@ -111,7 +114,7 @@ class DetailPageFragment : BaseFragment() {
 
     private fun initListeners() {
         btn_print.onClick {
-            // to do print
+            Toast.makeText(context, getString(R.string.no_printer_found), Toast.LENGTH_LONG).show()
         }
         btn_ready.onClick {
             prepareOrderStatus()
@@ -199,7 +202,6 @@ class DetailPageFragment : BaseFragment() {
         try {
             tv_cook_time.text =
                 ((convertTimes(orderDto.cookingDeadline!!)!!.time.time - convertTimes(orderDto.createdAt!!)!!.time.time) / SECOND).toString() + MIN
-
         } catch (e: NullPointerException) {
             Log.e(TAG, "setOrderCookTime: ${e.message}")
         }
@@ -211,8 +213,9 @@ class DetailPageFragment : BaseFragment() {
             Constants.BY_MYSELF -> btn_ready.text = getString(R.string.transfer_to_client)
         }
     }
+
     private fun setLoading(loading: Boolean) {
-       loadingView.visibility = if (loading) View.VISIBLE else View.GONE
+        loadingView.visibility = if (loading) View.VISIBLE else View.GONE
         btn_print.isEnabled = !loading
         btn_ready.isEnabled = !loading
     }

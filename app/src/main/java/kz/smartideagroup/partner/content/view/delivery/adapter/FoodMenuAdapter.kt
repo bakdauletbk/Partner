@@ -14,8 +14,10 @@ import kz.smartideagroup.partner.common.remote.Constants
 import kz.smartideagroup.partner.content.model.response.delivery.DishDto
 import kz.smartideagroup.partner.content.view.delivery.MenuFragment
 
-
-class FoodMenuAdapter(private val calback: MenuFragment, private val dishList: ArrayList<DishDto>) :
+class FoodMenuAdapter(
+    private val callback: MenuFragment,
+    private val dishList: ArrayList<DishDto>
+) :
     RecyclerView.Adapter<FoodMenuAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,12 +27,12 @@ class FoodMenuAdapter(private val calback: MenuFragment, private val dishList: A
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(dishList[position], calback)
+        holder.bind(dishList[position], callback)
     }
 
     override fun getItemCount(): Int = dishList.size
 
-    class ViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
+    class ViewHolder(root: View) : RecyclerView.ViewHolder(root) {
         private val tvFoodName = root.findViewById<TextView>(R.id.tv_food)
         private val ivLogo = root.findViewById<ImageView>(R.id.iv_foods)
         private val clNotAvailable = root.findViewById<ConstraintLayout>(R.id.cl_not_available)

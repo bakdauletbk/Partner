@@ -44,9 +44,9 @@ class DeliveryFragment : BaseFragment() {
     private val orderActiveAdapter: PreparationInProgressAdapter =
         PreparationInProgressAdapter(this)
 
-    private val orderCompleted: OrderCompletedAdapter = OrderCompletedAdapter(this)
+    private val orderCompletedAdapter: OrderCompletedAdapter = OrderCompletedAdapter(this)
     private var retailInfo: RetailDto? = null
-
+    private var reqOrderStatus: ReqOrderStatus? = null
     val alertDialog: AlertDialog = AlertDialog(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,8 +85,7 @@ class DeliveryFragment : BaseFragment() {
         rv_order_active.apply {
             layoutManager = LinearLayoutManager(context)
         }
-
-        rv_order_finish.adapter = orderCompleted
+        rv_order_finish.adapter = orderCompletedAdapter
         rv_order_finish.addOnScrollListener(object :
             PaginationCompletedScrollListener(rv_order_finish.layoutManager as LinearLayoutManager) {
             override fun isLastPage(): Boolean = viewModel.isHasNext()
@@ -103,11 +102,16 @@ class DeliveryFragment : BaseFragment() {
     private fun updateFeed() {
         setLoading(true)
         getRetailInfo()
-        CoroutineScope(Dispatchers.IO).launch {
-            viewModel.getOrderActive()
-        }
+        getOrderActive()
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.getInitialPage()
+        }
+    }
+
+    private fun getOrderActive() {
+        setLoading(true)
+        CoroutineScope(Dispatchers.IO).launch {
+            viewModel.getOrderActive()
         }
     }
 
@@ -145,11 +149,11 @@ class DeliveryFragment : BaseFragment() {
     }
 
     //Adapter Status Order callback
-    fun setStatusOrder(id: Int, status: Int) {
+    fun setStatusOrder(order: OrderDto, status: Int) {
         setLoading(true)
-        val reqOrderStatus = ReqOrderStatus(orderId = id, status = status)
+        reqOrderStatus = ReqOrderStatus(orderId = order.id, status = status)
         CoroutineScope(Dispatchers.IO).launch {
-            viewModel.setOrderStatus(reqOrderStatus)
+            viewModel.setOrderStatus(reqOrderStatus!!)
         }
     }
 
@@ -179,6 +183,7 @@ class DeliveryFragment : BaseFragment() {
             setLoading(false)
             errorDialog(it)
         })
+
         viewModel.orderActive.observe(viewLifecycleOwner, {
             when (it) {
                 null -> {
@@ -188,9 +193,10 @@ class DeliveryFragment : BaseFragment() {
                 else -> addOrderActive(it)
             }
         })
+
         viewModel.retailInfo.observe(viewLifecycleOwner, {
             when (it) {
-                null ->{
+                null -> {
                     setLoading(false)
                     errorDialog(getString(R.string.error_no_internet_msg))
                 }
@@ -200,13 +206,14 @@ class DeliveryFragment : BaseFragment() {
                 }
             }
         })
+
         viewModel.isDeliveryStatus.observe(viewLifecycleOwner, {
             when (it) {
                 true -> {
                     setLoading(false)
                     getRetailInfo()
                 }
-                false ->{
+                false -> {
                     setLoading(false)
                     errorDialog(getString(R.string.error_no_internet_msg))
                 }
@@ -218,17 +225,24 @@ class DeliveryFragment : BaseFragment() {
                     setLoading(false)
                     errorDialog(getString(R.string.error_no_internet_msg))
                 }
-                else -> {
-                    setLoading(false)
-                    orderCompleted.addOrderList(it)
-                }
+                else -> addOrderCompleted(it)
+
             }
         })
         viewModel.isOrderStatus.observe(viewLifecycleOwner, {
             when (it) {
                 true -> {
                     setLoading(false)
-                    orderActiveAdapter.notifyDataSetChanged()
+                    when (reqOrderStatus?.status == 5 || reqOrderStatus?.status == 6) {
+                        true -> {
+                            reqOrderStatus = null
+                            view?.let {
+                                Navigation.findNavController(it)
+                                    .navigate(R.id.deliveryFragment)
+                            }
+                        }
+                    }
+                    getOrderActive()
                 }
                 false -> {
                     setLoading(false)
@@ -240,6 +254,11 @@ class DeliveryFragment : BaseFragment() {
                 }
             }
         })
+    }
+
+    private fun addOrderCompleted(orderList: List<OrderDto>) {
+        setLoading(false)
+        orderCompletedAdapter.addOrderList(orderList)
     }
 
     private fun setRetailInfo(retailDto: RetailDto) {
@@ -262,7 +281,7 @@ class DeliveryFragment : BaseFragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun addOrderActive(orderList: List<OrderDto>) {
+    private fun addOrderActive(orderList : List<OrderDto>) {
         setLoading(false)
         tv_performed.text = PERFORMED + orderList.size.toString() + ")"
         orderActiveAdapter.addOrderList(orderList)

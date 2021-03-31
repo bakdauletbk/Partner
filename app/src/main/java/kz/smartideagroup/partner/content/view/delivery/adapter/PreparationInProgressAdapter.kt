@@ -30,15 +30,12 @@ class PreparationInProgressAdapter :
 
     private var callback: DeliveryFragment
 
-    fun clear() {
-        this.orderList.clear()
-    }
-
     constructor(callback: DeliveryFragment) : super() {
         this.callback = callback
     }
 
     fun addOrderList(orderList: List<OrderDto>) {
+        this.orderList.clear()
         this.orderList.addAll(orderList)
         notifyDataSetChanged()
     }
@@ -86,7 +83,10 @@ class PreparationInProgressAdapter :
                 Constants.ORDER_SEND -> {
                     rlProgress.visibility = View.GONE
                     view.visibility = View.VISIBLE
-                    tvReadyFood.text = callback.getString(R.string.send_order)
+                    when (orderDto.type) {
+                        Constants.DELIVERY -> tvReadyFood.text = callback.getString(R.string.send_order)
+                        Constants.BY_MYSELF ->  tvReadyFood.text = callback.getString(R.string.transfer_to_client)
+                    }
                 }
                 else -> {
                     llCookTimer.visibility = View.GONE
@@ -98,7 +98,7 @@ class PreparationInProgressAdapter :
                     Constants.DELIVERY -> {
                         when (orderDto.status) {
                             Constants.ORDER_COOKING -> {
-                                callback.setStatusOrder(orderDto.id!!, Constants.ORDER_SEND)
+                                callback.setStatusOrder(orderDto, Constants.ORDER_SEND)
                             }
                             Constants.ORDER_SEND -> {
                                 //alert send delivery
@@ -109,7 +109,7 @@ class PreparationInProgressAdapter :
                     Constants.BY_MYSELF -> {
                         when (orderDto.status) {
                             Constants.ORDER_COOKING -> {
-                                callback.setStatusOrder(orderDto.id!!, Constants.ORDER_SEND)
+                                callback.setStatusOrder(orderDto, Constants.ORDER_SEND)
                             }
                             else -> {
                                 callback.alertDialog.alertDialogTakeAway(orderDto)

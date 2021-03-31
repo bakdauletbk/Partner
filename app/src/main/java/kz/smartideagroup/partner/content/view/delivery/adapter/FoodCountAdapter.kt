@@ -21,6 +21,7 @@ class FoodCountAdapter : RecyclerView.Adapter<FoodCountAdapter.ViewHolder> {
     }
 
     fun addOrderList(orderList: List<OrderItems>) {
+        this.orderList.clear()
         this.orderList.addAll(orderList)
         notifyDataSetChanged()
     }

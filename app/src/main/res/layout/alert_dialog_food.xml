@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -63,7 +64,7 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:id="@+id/llOffFood"
+                        android:id="@+id/ll_off_food"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -93,7 +94,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/llOnFood"
+                        android:id="@+id/ll_dish_on_food"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -110,6 +111,23 @@
                             android:textColor="#090A0B"
                             android:textSize="22sp"
                             android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_loading"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="@dimen/dimens_10dp"
+                        android:elevation="@dimen/dimens_10dp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <ProgressBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_white_foreground" />
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -135,6 +153,8 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+
 
 
 </androidx.cardview.widget.CardView>

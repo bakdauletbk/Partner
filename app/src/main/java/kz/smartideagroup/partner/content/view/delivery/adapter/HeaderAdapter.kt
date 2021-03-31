@@ -24,6 +24,7 @@ class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.ViewHolder> {
     }
 
     fun addFoods(categoriesItems: List<CategoriesItems>) {
+        this.categoryList.clear()
         this.categoryList.addAll(categoriesItems)
         notifyDataSetChanged()
     }
@@ -40,12 +41,10 @@ class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.ViewHolder> {
 
     override fun getItemCount(): Int = categoryList.size
 
-    class ViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
+    class ViewHolder(root: View) : RecyclerView.ViewHolder(root) {
         private val tvFoodName = root.findViewById<TextView>(R.id.tv_category_name)
         private val recyclerView = root.findViewById<RecyclerView>(R.id.rv_food_count)
-
         private val viewPool = RecyclerView.RecycledViewPool()
-
 
         @SuppressLint("SetTextI18n")
         fun bind(categoriesItems: CategoriesItems, callback: MenuFragment) {

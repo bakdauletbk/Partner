@@ -28,64 +28,51 @@
 
         </LinearLayout>
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dimens_40dp"
-                android:layout_margin="@dimen/dimens_8dp"
-                android:background="@color/background"
-                android:visibility="gone"
-                app:tabGravity="center"
-                app:tabIndicator="@drawable/tab_indicator"
-                app:tabIndicatorAnimationMode="elastic"
-                app:tabIndicatorColor="@color/orange"
-                app:tabIndicatorGravity="stretch"
-                app:tabMode="fixed"
-                app:tabSelectedTextColor="@color/white"
-                app:tabTextColor="@color/white" />
-
-        </HorizontalScrollView>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimens_40dp"
+            android:layout_margin="@dimen/dimens_8dp"
+            android:background="@color/background"
+            android:visibility="gone"
+            app:tabGravity="center"
+            app:tabIndicator="@drawable/tab_indicator"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabIndicatorColor="@color/orange"
+            app:tabIndicatorGravity="stretch"
+            app:tabMode="auto"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/white" />
 
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
+        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_empty_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_10dp"
+            android:gravity="center"
+            android:text="@string/empty"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_foods"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-            <TextView
-                android:id="@+id/tv_empty_menu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimens_10dp"
-                android:gravity="center"
-                android:text="@string/empty"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_foods"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                />
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/loadingView"

@@ -33,7 +33,7 @@ data class OrderDto(
     @SerializedName("retailName")
     val retailName: String? = null,
     @SerializedName("status")
-    val status: Int? = null,
+    var status: Int? = null,
     @SerializedName("type")
     val type: Int? = null,
     @SerializedName("updatedAt")

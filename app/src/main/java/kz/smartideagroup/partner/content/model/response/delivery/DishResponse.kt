@@ -1,8 +1,7 @@
 package kz.smartideagroup.partner.content.model.response.delivery
 
-import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-data class DishResponse (
-    @SerializedName("dish")
-    val dish:DishDto
-)
+data class DishResponse(
+    val dish: DishDto
+) : Serializable

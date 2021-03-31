@@ -30,7 +30,7 @@ open class AlertDialog {
 
         button.setOnClickListener(View.OnClickListener {
             callback.setLoading(true)
-            callback.setStatusOrder(order.id!!, Constants.ORDER_DELIVERED)
+            callback.setStatusOrder(order, Constants.ORDER_DELIVERED)
             alertDialog!!.dismiss()
         })
 
@@ -45,7 +45,7 @@ open class AlertDialog {
         val button: MaterialButton = alertDialog!!.findViewById(R.id.btn_take_away)
         button.setOnClickListener(View.OnClickListener {
             callback.setLoading(true)
-            callback.setStatusOrder(order.id!!, Constants.ORDER_FINISH)
+            callback.setStatusOrder(order, Constants.ORDER_FINISH)
             alertDialog!!.dismiss()
         })
         alertDialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
