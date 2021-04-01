@@ -24,6 +24,7 @@ import kz.smartideagroup.partner.content.model.request.delivery.DeliveryStatusRe
 import kz.smartideagroup.partner.content.model.request.delivery.ReqOrderStatus
 import kz.smartideagroup.partner.content.model.response.delivery.OrderDto
 import kz.smartideagroup.partner.content.model.response.delivery.RetailDto
+import kz.smartideagroup.partner.content.view.FoundationActivity
 import kz.smartideagroup.partner.content.view.accept_order.AcceptOrderActivity
 import kz.smartideagroup.partner.content.view.delivery.adapter.OrderCompletedAdapter
 import kz.smartideagroup.partner.content.view.delivery.adapter.PreparationInProgressAdapter
@@ -37,6 +38,8 @@ class DeliveryFragment : BaseFragment() {
         const val PERFORMED = "Выполняется ("
         const val ONE = 1
     }
+
+    private var foundationActivity: FoundationActivity? = null
 
     private var nextPage = ONE
     private val bundle = Bundle()
@@ -70,10 +73,15 @@ class DeliveryFragment : BaseFragment() {
 
     private fun lets() {
         initViewModel()
+        initActivity()
         initRecyclerView()
         updateFeed()
         initListeners()
         initObservers()
+    }
+
+    private fun initActivity() {
+        foundationActivity = activity as FoundationActivity?
     }
 
     private fun initViewModel() {
@@ -129,10 +137,7 @@ class DeliveryFragment : BaseFragment() {
             }
         }
         rl_report_delivery.onClick {
-            view?.let {
-                Navigation.findNavController(it)
-                    .navigate(R.id.reportsFragment)
-            }
+            foundationActivity?.setReportsDelivery()
         }
         ll_delivery_status.onClick {
             setDeliveryStatus()

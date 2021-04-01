@@ -22,7 +22,7 @@
                 android:id="@+id/toolbarCashBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:title="Касса"
+                app:title="Главная"
                 app:titleTextColor="@color/white" />
 
         </LinearLayout>
@@ -259,14 +259,15 @@
                 android:layout_marginStart="@dimen/dimens_50dp"
                 android:layout_marginTop="@dimen/dimens_45dp"
                 android:layout_marginEnd="@dimen/dimens_50dp"
-                android:background="@drawable/btn_rounded_cashbox"
-                android:paddingVertical="@dimen/dimens_10dp"
                 android:text="@string/accept_payment"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
+                android:backgroundTint="@color/blue"
+                android:padding="@dimen/dimens_20dp"
+                app:cornerRadius="@dimen/dimens_10dp"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                app:backgroundTint="@null" />
+                android:textAllCaps="false"
+                />
+
 
         </LinearLayout>
 

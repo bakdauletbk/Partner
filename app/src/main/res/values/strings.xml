@@ -64,6 +64,7 @@
     <string name="error_while_logging_out_of_profile">Ошибка при выходе из профиля!</string>
     <string name="no_printer_found">Устройство для печати не найдено!</string>
     <string name="the_minimum_transaction_amount_for_one_purchase_is">Минимальная сумма транзации для одной покупки - 30 тенге.</string>
+    <string name="enter_the_amount">Введите сумму!</string>
 
     //Диалог
     <string name="dialog_retry">Ещё раз</string>

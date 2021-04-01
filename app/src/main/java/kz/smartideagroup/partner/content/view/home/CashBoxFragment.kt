@@ -46,26 +46,35 @@ class CashBoxFragment : BaseFragment() {
     private fun lets() {
         initListeners()
         initToolbar()
-        setNavigation()
+
     }
 
     private fun setNavigation() {
-        val sum = tv_count.text.toString().toLong()
-        when (sum > Constants.MIN_SUM) {
+        when (tv_count.text.isNotEmpty()) {
             true -> {
-                bundle.putLong(Constants.TRANSACTION_SUM, sum)
-                view?.let {
-                    Navigation.findNavController(it)
-                        .navigate(R.id.homeFragment, bundle)
+                when (tv_count.text.toString().toLong() > Constants.MIN_SUM) {
+                    true -> {
+                        val sum = tv_count.text.toString().toLong()
+                        bundle.putLong(Constants.TRANSACTION_SUM, sum)
+                        view?.let {
+                            Navigation.findNavController(it)
+                                .navigate(R.id.payFragment, bundle)
+                        }
+                    }
+                    false -> Toast.makeText(
+                        context,
+                        getString(R.string.the_minimum_transaction_amount_for_one_purchase_is),
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
             false -> Toast.makeText(
                 context,
-                getString(R.string.the_minimum_transaction_amount_for_one_purchase_is),
-                Toast.LENGTH_LONG
+                getString(R.string.enter_the_amount),
+                Toast.LENGTH_SHORT
             ).show()
-
         }
+
     }
 
     private fun initListeners() {
@@ -91,6 +100,10 @@ class CashBoxFragment : BaseFragment() {
                     tv_count.text = clear
                 }
             }
+        }
+
+        btn_accept_payment.onClick {
+            setNavigation()
         }
 
     }

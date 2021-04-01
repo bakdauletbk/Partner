@@ -23,6 +23,8 @@ class FoundationActivity : BaseActivity() {
 
     private lateinit var viewModel: FoundationViewModel
 
+    private var currentNavigationItemId = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_foundation)
@@ -84,9 +86,64 @@ class FoundationActivity : BaseActivity() {
     }
 
     private fun setupNavController(navController: NavController) {
+        showHomeFragment()
         bottom_navigation.itemIconTintList = null
         bottom_navigation.setupWithNavController(navController)
+        bottom_navigation.setOnNavigationItemSelectedListener { item ->
+            if (item.itemId != currentNavigationItemId) {
+                when (item.itemId) {
+                    R.id.menu_homeFragment -> showHomeFragment()
+                    R.id.menu_deliveryFragment -> showDeliveryFragment()
+                    R.id.menu_reportsFragment -> showReportsFragment()
+                    R.id.menu_notificationFragment -> showNotificationFragment()
+                    R.id.menu_settingsFragment -> showSettingsFragment()
+                }
+            }
+            true
+        }
 
     }
+
+    fun setNavigateDelivery() {
+        bottom_navigation.selectedItemId = R.id.menu_deliveryFragment
+    }
+
+    fun setReportsDelivery() {
+        bottom_navigation.selectedItemId = R.id.menu_reportsFragment
+    }
+    fun setSettingsDelivery() {
+        bottom_navigation.selectedItemId = R.id.menu_settingsFragment
+    }
+
+    private fun showHomeFragment() {
+        currentNavigationItemId = R.id.menu_homeFragment
+        findNavController(R.id.fragment)
+            .navigate(R.id.homeFragment)
+    }
+
+    private fun showSettingsFragment() {
+        currentNavigationItemId = R.id.menu_settingsFragment
+        findNavController(R.id.fragment)
+            .navigate(R.id.settingsFragment)
+    }
+
+    private fun showNotificationFragment() {
+        currentNavigationItemId = R.id.menu_notificationFragment
+        findNavController(R.id.fragment)
+            .navigate(R.id.notificationFragment)
+    }
+
+    private fun showReportsFragment() {
+        currentNavigationItemId = R.id.menu_reportsFragment
+        findNavController(R.id.fragment)
+            .navigate(R.id.reportsFragment)
+    }
+
+    private fun showDeliveryFragment() {
+        currentNavigationItemId = R.id.menu_deliveryFragment
+        findNavController(R.id.fragment)
+            .navigate(R.id.deliveryFragment)
+    }
+
 
 }

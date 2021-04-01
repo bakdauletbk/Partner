@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/homeFragment"
+        android:id="@+id/menu_homeFragment"
         android:icon="@drawable/icon_home"
         android:title="@string/home" />
     <item
-        android:id="@+id/deliveryFragment"
+        android:id="@+id/menu_deliveryFragment"
         android:icon="@drawable/icon_delivery"
         android:title="@string/delivery" />
     <item
-        android:id="@+id/reportsFragment"
+        android:id="@+id/menu_reportsFragment"
         android:icon="@drawable/icon_arrow"
         android:title="@string/reports" />
     <item
-        android:id="@+id/notificationFragment"
+        android:id="@+id/menu_notificationFragment"
         android:icon="@drawable/icon_notification"
         android:title="@string/notification" />
     <item
-        android:id="@+id/settingsFragment"
+        android:id="@+id/menu_settingsFragment"
         android:icon="@drawable/icon_yet"
         android:title="@string/yet" />
 

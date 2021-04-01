@@ -1,29 +1,27 @@
 package kz.smartideagroup.partner.content.view.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kz.smartideagroup.partner.R
-import kz.smartideagroup.partner.authorization.view.AuthorizationActivity
 import kz.smartideagroup.partner.common.views.BaseFragment
+import kz.smartideagroup.partner.content.view.FoundationActivity
 import kz.smartideagroup.partner.content.viewmodel.home.HomeViewModel
 import org.jetbrains.anko.sdk27.coroutines.onClick
-import org.jetbrains.anko.support.v4.intentFor
 
 class HomeFragment : BaseFragment() {
 
     private lateinit var viewModel: HomeViewModel
+
+    private var foundationActivity: FoundationActivity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,9 +44,14 @@ class HomeFragment : BaseFragment() {
 
     private fun lets() {
         initVewModel()
+        initActivity()
         initListeners()
         updateFeed()
         initObservers()
+    }
+
+    private fun initActivity() {
+        foundationActivity = activity as FoundationActivity?
     }
 
     private fun initListeners() {
@@ -59,22 +62,13 @@ class HomeFragment : BaseFragment() {
             }
         }
         rl_delivery.onClick {
-            view?.let {
-                Navigation.findNavController(it)
-                    .navigate(R.id.deliveryFragment)
-            }
+            foundationActivity?.setNavigateDelivery()
         }
         rl_reports.onClick {
-            view?.let {
-                Navigation.findNavController(it)
-                    .navigate(R.id.reportsFragment)
-            }
+            foundationActivity?.setReportsDelivery()
         }
         rl_settings.onClick {
-            view?.let {
-                Navigation.findNavController(it)
-                    .navigate(R.id.settingsFragment)
-            }
+            foundationActivity?.setSettingsDelivery()
         }
     }
 
