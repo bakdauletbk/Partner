@@ -53,6 +53,7 @@ class AuthorizationActivity : BaseActivity() {
                     finish()
                 }
                 false -> onSuccessFullDialog()
+
             }
         })
     }
@@ -64,7 +65,6 @@ class AuthorizationActivity : BaseActivity() {
     }
 
     private fun checkNetwork() {
-        setLoading(true)
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.checkNetwork(this@AuthorizationActivity)
         }
@@ -77,7 +77,10 @@ class AuthorizationActivity : BaseActivity() {
         val loginBody = LoginBodyRequest(password = password, userName = login)
 
         when (login.isNotEmpty() && password.isNotEmpty()) {
-            true -> sigIn(loginBody)
+            true -> {
+                setLoading(true)
+                sigIn(loginBody)
+            }
             false -> Toast.makeText(
                 this,
                 "Введенные вами данные некорректны!",

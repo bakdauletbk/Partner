@@ -74,6 +74,7 @@ class MenuFragment : BaseFragment() {
 
     private fun initObservers() {
         viewModel.isError.observe(viewLifecycleOwner, {
+            setLoading(false)
             errorDialog(getString(R.string.error_no_internet_msg))
         })
         viewModel.foodList.observe(viewLifecycleOwner, {
