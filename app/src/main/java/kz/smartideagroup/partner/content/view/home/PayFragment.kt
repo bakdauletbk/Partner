@@ -1,19 +1,39 @@
 package kz.smartideagroup.partner.content.view.home
 
+import android.R.attr.bitmap
+import android.content.Context
+import android.content.Context.WINDOW_SERVICE
 import android.graphics.Color
+import android.graphics.Point
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import androidmads.library.qrgenearator.QRGContents
+import androidmads.library.qrgenearator.QRGEncoder
 import androidx.activity.addCallback
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import kotlinx.android.synthetic.main.fragment_cash_box.*
-import kotlinx.android.synthetic.main.fragment_cash_box.toolbarCashBox
 import kotlinx.android.synthetic.main.fragment_pay.*
 import kz.smartideagroup.partner.R
+import kz.smartideagroup.partner.common.remote.Constants
 import kz.smartideagroup.partner.common.views.BaseFragment
+import kz.smartideagroup.partner.content.viewmodel.home.PayViewModel
+import java.lang.Exception
+
 
 class PayFragment : BaseFragment() {
+
+    companion object {
+        const val TAG = "PayFragment"
+    }
+
+    private var currentBright: Float? = null
+
+    private lateinit var viewModel: PayViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,26 +59,61 @@ class PayFragment : BaseFragment() {
     }
 
     private fun lets() {
-        initListeners()
+        initViewModel()
         initToolbar()
-        initQr()
+        getOrderId()
+        initObservers()
+    }
+
+    private fun initObservers() {
+        viewModel.orderId.observe(viewLifecycleOwner, {
+            if (it != null) {
+                setLoading(false)
+                initQr(it)
+            } else {
+                setLoading(false)
+                Log.d(TAG, "orderId null")
+            }
+        })
+    }
+
+    private fun getOrderId() {
+        setLoading(true)
+        viewModel.getOrderId()
+    }
+
+    private fun initViewModel() {
+        viewModel = ViewModelProvider(this).get(PayViewModel::class.java)
     }
 
     private fun initToolbar() {
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         toolbar.setTitleTextColor(Color.WHITE)
         toolbar.setNavigationOnClickListener {
-            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.cashBoxFragment) }
+            view?.let { it1 ->
+                Navigation.findNavController(it1).navigate(R.id.cashBoxFragment)
+            }
         }
     }
 
-    private fun initQr() {
-
+    private fun initQr(orderId: String) {
+        val sum = arguments?.getLong(Constants.TRANSACTION_SUM)
+        val qrGenerationString = "$orderId / $sum"
+        screenBrightness(1f)
+        val qrgEncoder = QRGEncoder(qrGenerationString, null, QRGContents.Type.TEXT, 800)
+        val qrBit = qrgEncoder.bitmap
+        iv_qr.setImageBitmap(qrBit)
     }
 
-    private fun initListeners() {
-
+    private fun screenBrightness(lvl: Float) {
+        val layout = activity?.window?.attributes
+        currentBright = layout?.screenBrightness
+        layout?.screenBrightness = lvl
+        activity?.window?.attributes = layout
     }
 
+    private fun setLoading(loading: Boolean) {
+        loadingViews.visibility = if (loading) View.VISIBLE else View.GONE
+    }
 
 }
