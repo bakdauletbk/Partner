@@ -52,7 +52,7 @@ class CashBoxFragment : BaseFragment() {
     private fun setNavigation() {
         when (tv_count.text.isNotEmpty()) {
             true -> {
-                when (tv_count.text.toString().toLong() > Constants.MIN_SUM) {
+                when (tv_count.text.toString().toLong() >= Constants.MIN_SUM) {
                     true -> {
                         val sum = tv_count.text.toString().toLong()
                         bundle.putLong(Constants.TRANSACTION_SUM, sum)

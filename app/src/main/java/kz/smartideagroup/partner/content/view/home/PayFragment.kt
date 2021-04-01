@@ -1,20 +1,14 @@
 package kz.smartideagroup.partner.content.view.home
 
-import android.R.attr.bitmap
-import android.content.Context
-import android.content.Context.WINDOW_SERVICE
 import android.graphics.Color
-import android.graphics.Point
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidmads.library.qrgenearator.QRGContents
 import androidmads.library.qrgenearator.QRGEncoder
 import androidx.activity.addCallback
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_pay.*
@@ -22,7 +16,6 @@ import kz.smartideagroup.partner.R
 import kz.smartideagroup.partner.common.remote.Constants
 import kz.smartideagroup.partner.common.views.BaseFragment
 import kz.smartideagroup.partner.content.viewmodel.home.PayViewModel
-import java.lang.Exception
 
 
 class PayFragment : BaseFragment() {
@@ -98,6 +91,7 @@ class PayFragment : BaseFragment() {
 
     private fun initQr(orderId: String) {
         val sum = arguments?.getLong(Constants.TRANSACTION_SUM)
+        tv_price_pay.text = sum.toString()
         val qrGenerationString = "$orderId / $sum"
         screenBrightness(1f)
         val qrgEncoder = QRGEncoder(qrGenerationString, null, QRGContents.Type.TEXT, 800)
