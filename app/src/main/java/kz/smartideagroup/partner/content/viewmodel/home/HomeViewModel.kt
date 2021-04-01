@@ -14,7 +14,6 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private var repository: HomeRepository = HomeRepository(application)
 
     val isNetworkConnection = MutableLiveData<Boolean>()
-    val isAuthorize = MutableLiveData<Boolean>()
     val retailName = MutableLiveData<String>()
     val isSendFireBaseToken = MutableLiveData<Boolean>()
     val isError = MutableLiveData<String>()
@@ -31,10 +30,6 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                 isNetworkConnection.postValue(false)
             }
         }
-    }
-
-    fun getAuthorize() {
-        isAuthorize.postValue(repository.getAuthorize())
     }
 
     suspend fun sendFireBaseToken(token: String) {

@@ -86,7 +86,6 @@ object Constants {
     var monthTo = 0
     var yearTo = 0
 
-
     const val ONE_FLOAT = 1f
     const val TWO_FLOAT = 2f
 
@@ -94,4 +93,20 @@ object Constants {
     const val INSTAGRAM_LINK = "https://www.instagram.com/pillikan.kz/"
     const val YOUTUBE_LINK = "https://www.youtube.com/channel/UCnJQ6k3GfN5tpKQMQ2v-ZrQ"
     const val FAQ_LINK = "https://pillikan.kz/partners-faq"
+
+    //Calculate
+    const val ONE_STRING = "1"
+    const val TWO_STRING = "2"
+    const val THREE_STRING = "3"
+    const val FOUR_STRING = "4"
+    const val FIVE_STRING = "5"
+    const val SIX_STRING = "6"
+    const val SEVEN_STRING = "7"
+    const val EIGHT_STRING = "8"
+    const val NINE_STRING = "9"
+    const val ZERO_STRING = "0"
+
+    //Transaction minimum sum
+    const val MIN_SUM = 30
+    const val TRANSACTION_SUM = "TRANSACTION_SUM"
 }

@@ -4,7 +4,7 @@ plugins {
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs'
-//    id 'com.google.gms.google-services'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -12,7 +12,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "kz.pillikan.retailapp"
+        applicationId "kz.smartideagroup.partner"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
@@ -88,5 +88,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.5.0')
     implementation 'com.google.firebase:firebase-core:18.0.2'
     implementation 'com.google.firebase:firebase-messaging:21.0.1'
-    implementation 'com.google.firebase:firebase-core:18.0.2'
+
+    //Qr Generator
+    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.4'
 }

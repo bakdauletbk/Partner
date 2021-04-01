@@ -30,12 +30,12 @@
         android:id="@+id/notificationFragment"
         android:name="kz.smartideagroup.partner.content.view.notification.NotificationFragment"
         android:label="NotificationFragment"
-        tools:layout="@layout/fragment_notification"/>
+        tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/reportsFragment"
         android:name="kz.smartideagroup.partner.content.view.reports.ReportsFragment"
         android:label="ReportsFragment"
-        tools:layout="@layout/fragment_reports"/>
+        tools:layout="@layout/fragment_reports" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="kz.smartideagroup.partner.content.view.settings.SettingsFragment"
@@ -49,7 +49,11 @@
         android:id="@+id/cashBoxFragment"
         android:name="kz.smartideagroup.partner.content.view.home.CashBoxFragment"
         android:label="CashBoxFragment"
-        tools:layout="@layout/fragment_cash_box"/>
+        tools:layout="@layout/fragment_cash_box">
+        <action
+            android:id="@+id/action_cashBoxFragment_to_payFragment"
+            app:destination="@id/payFragment" />
+    </fragment>
     <fragment
         android:id="@+id/menuFragment"
         android:name="kz.smartideagroup.partner.content.view.delivery.MenuFragment"
@@ -61,10 +65,17 @@
     </fragment>
     <fragment
         android:id="@+id/aboutUsFragment"
+        tools:layout="@layout/fragment_about_us"
         android:name="kz.smartideagroup.partner.content.view.settings.AboutUsFragment"
         android:label="AboutUsFragment" />
     <fragment
         android:id="@+id/detailPageFragment"
+        tools:layout="@layout/fragment_detail_page"
         android:name="kz.smartideagroup.partner.content.view.delivery.DetailPageFragment"
         android:label="DetailPageFragment" />
+    <fragment
+        android:id="@+id/payFragment"
+        android:name="kz.smartideagroup.partner.content.view.home.PayFragment"
+        android:label="PayFragment"
+        tools:layout="@layout/fragment_pay" />
 </navigation>

@@ -51,7 +51,7 @@ class AcceptOrderActivity : BaseActivity() {
     }
 
     private fun initNavigation() {
-        val orderId = intent.getIntExtra(Constants.ACCEPT_ORDER_ID, 0)
+        val orderId = intent.getIntExtra(Constants.ACCEPT_ORDER_ID, Constants.ZERO)
 
         bundle.putInt(Constants.ACCEPT_ORDER_ID, orderId)
 

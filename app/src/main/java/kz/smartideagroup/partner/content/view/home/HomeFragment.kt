@@ -87,37 +87,13 @@ class HomeFragment : BaseFragment() {
         viewModel.retailName.observe(viewLifecycleOwner, {
             toolbar.title = it
         })
-        viewModel.isAuthorize.observe(viewLifecycleOwner, {
-            when (it) {
-                true -> {
-//                    getFirebaseToken()
-                }
-                false -> {
-                    startActivity(intentFor<AuthorizationActivity>())
-                    activity?.finish()
-                }
-            }
-        })
     }
 
-    private fun getFirebaseToken() {
-        FirebaseInstanceId.getInstance().instanceId
-            .addOnCompleteListener(OnCompleteListener { task ->
-                if (!task.isSuccessful) {
-                    return@OnCompleteListener
-                }
-                val token = task.result!!.token
-                CoroutineScope(Dispatchers.IO).launch {
-                    viewModel.sendFireBaseToken(token)
-                }
-            })
-    }
 
     private fun updateFeed() {
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.checkNetwork(requireContext())
         }
-        viewModel.getAuthorize()
         viewModel.getRetailName()
     }
 

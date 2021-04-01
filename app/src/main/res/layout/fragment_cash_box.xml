@@ -31,18 +31,18 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dimens_20dp"
             android:gravity="center"
             android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dimens_80dp"
                 android:layout_marginStart="@dimen/dimens_10dp"
                 android:layout_marginEnd="@dimen/dimens_10dp"
                 android:background="@drawable/shape_cashbox"
@@ -54,8 +54,11 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="@dimen/dimens_10dp"
                     android:drawableEnd="@drawable/ic_tng_icon"
                     android:hint="@string/zero"
+                    android:maxLines="1"
                     android:textColor="@color/background"
                     android:textColorHint="@color/background"
                     android:textSize="48sp"
@@ -253,11 +256,11 @@
                 android:id="@+id/btn_accept_payment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/dimens_10dp"
                 android:layout_marginStart="@dimen/dimens_50dp"
                 android:layout_marginTop="@dimen/dimens_45dp"
                 android:layout_marginEnd="@dimen/dimens_50dp"
                 android:background="@drawable/btn_rounded_cashbox"
+                android:paddingVertical="@dimen/dimens_10dp"
                 android:text="@string/accept_payment"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
