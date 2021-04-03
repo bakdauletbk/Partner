@@ -22,26 +22,19 @@ class DeliveryViewModel(application: Application) : AndroidViewModel(application
     var isDeliveryStatus = MutableLiveData<Boolean>()
     var isOrderStatus = MutableLiveData<Boolean>()
 
+    val isHasNextPage = MutableLiveData<Boolean>()
     var orderCompletedList = MutableLiveData<List<OrderDto>>()
-    private var orderCompletedPage: PageOrder<OrderDto>? = null
-    private var isLoading = true
+    var orderCompletedPage: PageOrder<OrderDto>? = null
+
 
     fun getInitialPage() {
         loadPage(0)
     }
 
-    fun getNextPage(nextPage:Int) {
+    fun getNextPage(nextPage: Int) {
         viewModelScope.launch {
             loadPage(nextPage)
         }
-    }
-
-    fun isHasNext(): Boolean {
-        return orderCompletedPage != null && orderCompletedPage!!.hasNextPage()
-    }
-
-    fun isLoading(): Boolean {
-        return isLoading
     }
 
     suspend fun getOrderActive() {
@@ -67,18 +60,13 @@ class DeliveryViewModel(application: Application) : AndroidViewModel(application
     private fun loadPage(page: Int) {
         viewModelScope.launch {
             try {
-                isLoading = true
                 val response = repository.getOrderCompleted(page)
-                if (response != null) {
-                    isLoading = false
-                    orderCompletedPage = response
-                    if (orderCompletedPage!!.getContent()!!.isNullOrEmpty()) {
-                        orderCompletedList.postValue(null)
-                    } else {
-                        orderCompletedList.postValue(orderCompletedPage!!.getContent())
-                    }
-                }else{
-                    isLoading = false
+                orderCompletedPage = response
+                isHasNextPage.postValue(orderCompletedPage!!.hasNextPage())
+                if (orderCompletedPage!!.getContent()!!.isNullOrEmpty()) {
+                    orderCompletedList.postValue(null)
+                } else {
+                    orderCompletedList.postValue(orderCompletedPage!!.getContent())
                 }
             } catch (e: Exception) {
                 isError.postValue(e.message.toString())

@@ -61,14 +61,14 @@ class DeliveryRepository(application: Application) {
             size = pageLimit
         )
         return if (response.code() == Constants.RESPONSE_SUCCESS_CODE) {
-            val hasNextPage = !response.body()?.orders?.hasNext!!
+            val hasNextPage = response.body()?.orders?.hasNext!!
             val orderList: ArrayList<OrderDto> = ArrayList()
             for (i in response.body()?.orders?.content!!.indices) {
                 orderList.add(response.body()!!.orders?.content!![i])
             }
 
             val orderPage: PageOrder<OrderDto>? =
-                hasNextPage?.let { PageOrder(content = orderList,hasNextPage = it) }
+                PageOrder(content = orderList,hasNextPage = hasNextPage)
 
             orderPage
         } else {

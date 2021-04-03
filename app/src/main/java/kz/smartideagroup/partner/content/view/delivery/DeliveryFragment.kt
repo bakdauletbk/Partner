@@ -2,11 +2,13 @@ package kz.smartideagroup.partner.content.view.delivery
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,6 +48,8 @@ class DeliveryFragment : BaseFragment() {
     private lateinit var viewModel: DeliveryViewModel
     private val orderActiveAdapter: PreparationInProgressAdapter =
         PreparationInProgressAdapter(this)
+
+    private var isReportsFurther = true
 
     private val orderCompletedAdapter: OrderCompletedAdapter = OrderCompletedAdapter(this)
     private var retailInfo: RetailDto? = null
@@ -93,18 +97,24 @@ class DeliveryFragment : BaseFragment() {
         rv_order_active.apply {
             layoutManager = LinearLayoutManager(context)
         }
+
         rv_order_finish.adapter = orderCompletedAdapter
-        rv_order_finish.addOnScrollListener(object :
-            PaginationCompletedScrollListener(rv_order_finish.layoutManager as LinearLayoutManager) {
-            override fun isLastPage(): Boolean = viewModel.isHasNext()
-            override fun isLoading(): Boolean = viewModel.isLoading()
-            override fun loadMoreItems() {
-                CoroutineScope(Dispatchers.IO).launch {
-                    viewModel.getNextPage(nextPage)
-                    nextPage++
+
+        nsv.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
+            if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
+                when (isReportsFurther) {
+                    true -> {
+                        setLoading(true)
+                        CoroutineScope(Dispatchers.IO).launch {
+                            viewModel.getNextPage(nextPage)
+                            nextPage++
+                        }
+                    }
                 }
+
             }
         })
+
     }
 
     private fun updateFeed() {
@@ -241,7 +251,7 @@ class DeliveryFragment : BaseFragment() {
                     when (reqOrderStatus?.status == Constants.ORDER_DELIVERED || reqOrderStatus?.status == Constants.ORDER_FINISH) {
                         true -> {
                             reqOrderStatus = null
-                            view?.let {it1 ->
+                            view?.let { it1 ->
                                 Navigation.findNavController(it1)
                                     .navigate(R.id.deliveryFragment)
                             }
@@ -258,6 +268,10 @@ class DeliveryFragment : BaseFragment() {
                     ).show()
                 }
             }
+        })
+        viewModel.isHasNextPage.observe(viewLifecycleOwner, {
+            isReportsFurther = it
+            Log.d("ErmahanHaseNextPage", "HasNextPage : $it")
         })
     }
 

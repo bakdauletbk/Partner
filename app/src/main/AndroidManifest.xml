@@ -32,10 +32,10 @@
         <activity
             android:name=".content.view.accept_order.AcceptOrderActivity"
             android:configChanges="orientation|screenSize" />
+
         <activity
             android:name=".authorization.view.AuthorizationActivity"
             android:configChanges="orientation|screenSize" />
-
 
         <service
             android:name=".common.services.PillikanFirebaseMessagingService"
@@ -56,14 +56,6 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="default_notification_channel_id" />
-
-        <receiver
-            android:name=".common.receiver.PushHandlerReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.example.UPDATE_STATUS" />
-            </intent-filter>
-        </receiver>
 
     </application>
 
