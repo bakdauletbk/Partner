@@ -30,6 +30,7 @@ import kz.smartideagroup.partner.content.view.delivery.adapter.OrderCompletedAda
 import kz.smartideagroup.partner.content.view.delivery.adapter.PreparationInProgressAdapter
 import kz.smartideagroup.partner.content.viewmodel.delivery.DeliveryViewModel
 import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.intentFor
 
 class DeliveryFragment : BaseFragment() {
@@ -48,6 +49,7 @@ class DeliveryFragment : BaseFragment() {
         PreparationInProgressAdapter(this)
 
     private var isReportsFurther = true
+    private var isDialogVisibility = false
 
     private val orderCompletedAdapter: OrderCompletedAdapter = OrderCompletedAdapter(this)
     private var retailInfo: RetailDto? = null
@@ -207,13 +209,13 @@ class DeliveryFragment : BaseFragment() {
     private fun initObservers() {
         viewModel.isError.observe(viewLifecycleOwner, {
             setLoading(false)
-            errorDialog(getString(R.string.error_no_internet_msg))
+            showErrorDialog(getString(R.string.error_no_internet_msg))
         })
         viewModel.orderActive.observe(viewLifecycleOwner, {
             when (it) {
                 null -> {
                     setLoading(false)
-                    errorDialog(getString(R.string.error_failed_connection_to_server))
+                    showErrorDialog(getString(R.string.error_failed_connection_to_server))
                 }
                 else -> addOrderActive(it)
             }
@@ -222,7 +224,7 @@ class DeliveryFragment : BaseFragment() {
             when (it) {
                 null -> {
                     setLoading(false)
-                    errorDialog(getString(R.string.error_failed_connection_to_server))
+                    showErrorDialog(getString(R.string.error_failed_connection_to_server))
                 }
                 else -> {
                     setLoading(false)
@@ -238,7 +240,7 @@ class DeliveryFragment : BaseFragment() {
                 }
                 false -> {
                     setLoading(false)
-                    errorDialog(getString(R.string.error_failed_connection_to_server))
+                    showErrorDialog(getString(R.string.error_failed_connection_to_server))
                 }
             }
         })
@@ -246,7 +248,7 @@ class DeliveryFragment : BaseFragment() {
             when (it) {
                 null -> {
                     setLoading(false)
-                    errorDialog(getString(R.string.error_failed_connection_to_server))
+                    showErrorDialog(getString(R.string.error_failed_connection_to_server))
                 }
                 else -> addOrderCompleted(it)
 
@@ -318,5 +320,21 @@ class DeliveryFragment : BaseFragment() {
         rl_report_delivery.isEnabled = !loading
         ll_delivery_status.isEnabled = !loading
     }
+
+    private fun showErrorDialog(errorMsg: String) {
+        if (!isDialogVisibility) {
+            isDialogVisibility = true
+            alert {
+                title = getString(R.string.error_unknown_title)
+                message = errorMsg
+                isCancelable = false
+                positiveButton(getString(R.string.dialog_ok)) { dialog ->
+                    dialog.dismiss()
+                    isDialogVisibility = false
+                }
+            }.show()
+        }
+    }
+
 
 }
