@@ -142,7 +142,7 @@ class ConfirmOrderFragment : BaseFragment() {
     private fun initObservers() {
         viewModel.isError.observe(viewLifecycleOwner, {
             setLoading(false)
-            errorDialog(it)
+            errorDialog(getString(R.string.error_no_internet_msg))
         })
         viewModel.order.observe(viewLifecycleOwner, {
             when (it) {

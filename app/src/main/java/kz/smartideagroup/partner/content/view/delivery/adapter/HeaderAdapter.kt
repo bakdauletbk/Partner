@@ -23,6 +23,10 @@ class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.ViewHolder> {
         this.callback = callback
     }
 
+    fun clear(){
+        this.categoryList.clear()
+    }
+
     fun addFoods(categoriesItems: List<CategoriesItems>) {
         this.categoryList.clear()
         this.categoryList.addAll(categoriesItems)

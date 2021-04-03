@@ -55,11 +55,11 @@ object Constants {
 
     //Put Extra Order
     const val ACCEPT_ORDER_ID = "ACCEPT_ORDER_ID"
-    const val ACCEPT_ORDER = "orderId"
 
     //Timer
     var TIME_LEFT_IN_MILLIS = 200000
     var TIME_MILLIS = 180000
+    var DELAY = 2000
 
     //Order Text
     const val UTENSILS_COUNT = "Приборы  x"
@@ -68,6 +68,7 @@ object Constants {
     const val DOT = "."
     const val PLUS = "+"
     const val MINUS = "-"
+    const val BRACKET = ")"
 
     const val THREE = 3
 
@@ -86,6 +87,7 @@ object Constants {
     var monthTo = 0
     var yearTo = 0
 
+    const val ZERO_FLOAT = 0f
     const val ONE_FLOAT = 1f
     const val TWO_FLOAT = 2f
 

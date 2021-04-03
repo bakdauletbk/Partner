@@ -36,7 +36,7 @@ class AcceptOrderFragment : BaseFragment() {
 
     private fun initListeners() {
         btn_accept_order.onClick {
-            val orderId = arguments?.getInt(Constants.ACCEPT_ORDER_ID, 0)
+            val orderId = arguments?.getInt(Constants.ACCEPT_ORDER_ID, Constants.ZERO)
 
             bundle.putInt(Constants.ACCEPT_ORDER_ID, orderId!!)
 
@@ -49,8 +49,8 @@ class AcceptOrderFragment : BaseFragment() {
 
     @SuppressLint("SetTextI18n")
     private fun setOrderInfo() {
-        val orderId = arguments?.getInt(Constants.ACCEPT_ORDER_ID, 0)
-        tv_order_id.text = "Заказ $orderId"
+        val orderId = arguments?.getInt(Constants.ACCEPT_ORDER_ID, Constants.ZERO)
+        tv_order_id.text = Constants.ORDER + orderId
     }
 
 }

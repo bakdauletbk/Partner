@@ -43,9 +43,21 @@ class DeliveryReportsFragment : BaseFragment() {
     private fun lets() {
         initViewModel()
         initRecyclerView()
+        initSwipeRefreshLayout()
         updateFeed()
         initObservers()
     }
+
+    private fun initSwipeRefreshLayout() {
+        swipe_refresh_layout.setOnRefreshListener {
+            reportList.clear()
+            reportAdapter.notifyDataSetChanged()
+            nextPage = Constants.ONE
+            updateFeed()
+            swipe_refresh_layout.isRefreshing = false
+        }
+    }
+
 
     private fun initRecyclerView() {
         rv_report.adapter = reportAdapter
@@ -76,7 +88,8 @@ class DeliveryReportsFragment : BaseFragment() {
 
     private fun initObservers() {
         viewModel.isError.observe(viewLifecycleOwner, {
-            errorDialog(it)
+            setLoading(false)
+            errorDialog(getString(R.string.error_no_internet_msg))
         })
         viewModel.reportList.observe(viewLifecycleOwner, {
             if (it != null) {

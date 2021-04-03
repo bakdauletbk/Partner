@@ -2,7 +2,6 @@ package kz.smartideagroup.partner.content.view.delivery
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,11 +75,22 @@ class DeliveryFragment : BaseFragment() {
 
     private fun lets() {
         initViewModel()
+        initSwipeRefreshLayout()
         initActivity()
         initRecyclerView()
         updateFeed()
         initListeners()
         initObservers()
+    }
+
+    private fun initSwipeRefreshLayout() {
+        swipe_refresh_layout.setOnRefreshListener {
+            orderCompletedAdapter.clear()
+            orderCompletedAdapter.notifyDataSetChanged()
+            nextPage = ONE
+            updateFeed()
+            swipe_refresh_layout.isRefreshing = false
+        }
     }
 
     private fun initActivity() {
@@ -99,8 +109,12 @@ class DeliveryFragment : BaseFragment() {
 
         rv_order_finish.adapter = orderCompletedAdapter
 
+        setPagination()
+    }
+
+    private fun setPagination() {
         nsv.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
-            if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
+            if (scrollY == v.getChildAt(Constants.ZERO).measuredHeight - v.measuredHeight) {
                 when (isReportsFurther) {
                     true -> {
                         setLoading(true)
@@ -110,10 +124,8 @@ class DeliveryFragment : BaseFragment() {
                         }
                     }
                 }
-
             }
         })
-
     }
 
     private fun updateFeed() {
@@ -195,24 +207,22 @@ class DeliveryFragment : BaseFragment() {
     private fun initObservers() {
         viewModel.isError.observe(viewLifecycleOwner, {
             setLoading(false)
-            errorDialog(it)
+            errorDialog(getString(R.string.error_no_internet_msg))
         })
-
         viewModel.orderActive.observe(viewLifecycleOwner, {
             when (it) {
                 null -> {
                     setLoading(false)
-                    errorDialog(getString(R.string.error_no_internet_msg))
+                    errorDialog(getString(R.string.error_failed_connection_to_server))
                 }
                 else -> addOrderActive(it)
             }
         })
-
         viewModel.retailInfo.observe(viewLifecycleOwner, {
             when (it) {
                 null -> {
                     setLoading(false)
-                    errorDialog(getString(R.string.error_no_internet_msg))
+                    errorDialog(getString(R.string.error_failed_connection_to_server))
                 }
                 else -> {
                     setLoading(false)
@@ -220,7 +230,6 @@ class DeliveryFragment : BaseFragment() {
                 }
             }
         })
-
         viewModel.isDeliveryStatus.observe(viewLifecycleOwner, {
             when (it) {
                 true -> {
@@ -229,7 +238,7 @@ class DeliveryFragment : BaseFragment() {
                 }
                 false -> {
                     setLoading(false)
-                    errorDialog(getString(R.string.error_no_internet_msg))
+                    errorDialog(getString(R.string.error_failed_connection_to_server))
                 }
             }
         })
@@ -237,7 +246,7 @@ class DeliveryFragment : BaseFragment() {
             when (it) {
                 null -> {
                     setLoading(false)
-                    errorDialog(getString(R.string.error_no_internet_msg))
+                    errorDialog(getString(R.string.error_failed_connection_to_server))
                 }
                 else -> addOrderCompleted(it)
 
@@ -250,10 +259,9 @@ class DeliveryFragment : BaseFragment() {
                     when (reqOrderStatus?.status == Constants.ORDER_DELIVERED || reqOrderStatus?.status == Constants.ORDER_FINISH) {
                         true -> {
                             reqOrderStatus = null
-                            view?.let { it1 ->
-                                Navigation.findNavController(it1)
-                                    .navigate(R.id.deliveryFragment)
-                            }
+                            orderCompletedAdapter.clear()
+                            nextPage = ONE
+                            updateFeed()
                         }
                     }
                     getOrderActive()
@@ -270,7 +278,6 @@ class DeliveryFragment : BaseFragment() {
         })
         viewModel.isHasNextPage.observe(viewLifecycleOwner, {
             isReportsFurther = it
-            Log.d("ErmahanHaseNextPage", "HasNextPage : $it")
         })
     }
 
@@ -301,7 +308,7 @@ class DeliveryFragment : BaseFragment() {
     @SuppressLint("SetTextI18n")
     private fun addOrderActive(orderList: List<OrderDto>) {
         setLoading(false)
-        tv_performed.text = PERFORMED + orderList.size.toString() + ")"
+        tv_performed.text = PERFORMED + orderList.size.toString() + Constants.BRACKET
         orderActiveAdapter.addOrderList(orderList)
     }
 

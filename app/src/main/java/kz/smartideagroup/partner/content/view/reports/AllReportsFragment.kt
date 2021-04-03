@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.fragment_notification.*
 import kotlinx.android.synthetic.main.fragment_report_view_pager.*
+import kotlinx.android.synthetic.main.fragment_report_view_pager.swipe_refresh_layout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,6 +17,7 @@ import kz.smartideagroup.partner.common.remote.Constants
 import kz.smartideagroup.partner.common.views.BaseFragment
 import kz.smartideagroup.partner.common.views.PaginationCompletedScrollListener
 import kz.smartideagroup.partner.content.model.response.reports.ReportsItems
+import kz.smartideagroup.partner.content.view.notification.NotificationFragment
 import kz.smartideagroup.partner.content.view.reports.adapter.ReportsAdapter
 import kz.smartideagroup.partner.content.viewmodel.reports.AllReportsViewModel
 
@@ -41,8 +44,19 @@ class AllReportsFragment : BaseFragment() {
     private fun lets() {
         initViewModel()
         initRecyclerView()
+        initSwipeRefreshLayout()
         updateFeed()
         initObservers()
+    }
+
+    private fun initSwipeRefreshLayout() {
+        swipe_refresh_layout.setOnRefreshListener {
+            reportList.clear()
+            reportAdapter.notifyDataSetChanged()
+            nextPage = Constants.ONE
+            updateFeed()
+            swipe_refresh_layout.isRefreshing = false
+        }
     }
 
     private fun initRecyclerView() {
@@ -74,15 +88,14 @@ class AllReportsFragment : BaseFragment() {
 
     private fun initObservers() {
         viewModel.isError.observe(viewLifecycleOwner, {
-            errorDialog(it)
+            setLoading(false)
+            errorDialog(getString(R.string.error_no_internet_msg))
         })
         viewModel.reportList.observe(viewLifecycleOwner, {
             if (it != null) {
                 setLoading(false)
                 addReports(it)
-            } else {
-                setEmptyReports()
-            }
+            } else setEmptyReports()
         })
     }
 

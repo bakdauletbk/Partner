@@ -88,7 +88,7 @@ class DetailPageFragment : BaseFragment() {
 
     private fun initObservers() {
         viewModel.isError.observe(viewLifecycleOwner, {
-            errorDialog(it)
+            errorDialog(getString(R.string.error_no_internet_msg))
         })
         viewModel.isOrderStatus.observe(viewLifecycleOwner, {
             when (it) {

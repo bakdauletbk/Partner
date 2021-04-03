@@ -28,22 +28,27 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_empty_notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dimens_15dp"
+                android:fontFamily="@font/whitney_book"
                 android:text="@string/empty"
                 android:textColor="@color/white"
-                android:fontFamily="@font/whitney_book"
                 android:textSize="18sp"
-                android:layout_marginTop="@dimen/dimens_15dp"
                 android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -54,6 +59,8 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </LinearLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <RelativeLayout
         android:id="@+id/loadingView"

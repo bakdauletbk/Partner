@@ -19,6 +19,10 @@ class NotificationAdapter : RecyclerView.Adapter<NotificationAdapter.ViewHolder>
         this.callback = callback
     }
 
+    fun clear() {
+        this.notificationList.clear()
+    }
+
     fun addNotifications(notificationList: List<RetailNotifications>) {
         this.notificationList.addAll(notificationList)
         notifyDataSetChanged()

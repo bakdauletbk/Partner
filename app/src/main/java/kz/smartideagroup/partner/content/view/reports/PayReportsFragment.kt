@@ -42,6 +42,7 @@ class PayReportsFragment : BaseFragment() {
     private fun lets() {
         initViewModel()
         initRecyclerView()
+        initSwipeRefreshLayout()
         updateFeed()
         initObservers()
     }
@@ -49,6 +50,17 @@ class PayReportsFragment : BaseFragment() {
     private fun initViewModel() {
         viewModel = ViewModelProvider(this).get(PayReportsViewModel::class.java)
     }
+
+    private fun initSwipeRefreshLayout() {
+        swipe_refresh_layout.setOnRefreshListener {
+            reportList.clear()
+            reportAdapter.notifyDataSetChanged()
+            nextPage = Constants.ONE
+            updateFeed()
+            swipe_refresh_layout.isRefreshing = false
+        }
+    }
+
 
     private fun initRecyclerView() {
         rv_report.adapter = reportAdapter
@@ -68,7 +80,8 @@ class PayReportsFragment : BaseFragment() {
 
     private fun initObservers() {
         viewModel.isError.observe(viewLifecycleOwner, {
-            errorDialog(it)
+            setLoading(false)
+            errorDialog(getString(R.string.error_no_internet_msg))
         })
         viewModel.reportList.observe(viewLifecycleOwner, {
             if (it != null) {

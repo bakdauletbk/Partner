@@ -8,8 +8,10 @@ import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.fragment_delivery.*
 import kotlinx.android.synthetic.main.fragment_notification.*
 import kotlinx.android.synthetic.main.fragment_notification.loadingView
+import kotlinx.android.synthetic.main.fragment_notification.swipe_refresh_layout
 import kotlinx.android.synthetic.main.fragment_report_view_pager.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,6 +20,7 @@ import kz.smartideagroup.partner.R
 import kz.smartideagroup.partner.common.views.BaseFragment
 import kz.smartideagroup.partner.common.views.PaginationScrollListener
 import kz.smartideagroup.partner.content.model.response.notification.RetailNotifications
+import kz.smartideagroup.partner.content.view.delivery.DeliveryFragment
 import kz.smartideagroup.partner.content.viewmodel.notification.NotificationViewModel
 
 class NotificationFragment : BaseFragment() {
@@ -54,8 +57,19 @@ class NotificationFragment : BaseFragment() {
     private fun lets() {
         initViewModel()
         initRecyclerView()
+        initSwipeRefreshLayout()
         updateFeed()
         initObservers()
+    }
+
+    private fun initSwipeRefreshLayout() {
+        swipe_refresh_layout.setOnRefreshListener {
+            adapter.clear()
+            adapter.notifyDataSetChanged()
+            nextPage = ONE
+            updateFeed()
+            swipe_refresh_layout.isRefreshing = false
+        }
     }
 
     private fun initRecyclerView() {
@@ -86,6 +100,7 @@ class NotificationFragment : BaseFragment() {
 
     private fun initObservers() {
         viewModel.isError.observe(viewLifecycleOwner, {
+            setLoading(false)
             errorDialog(getString(R.string.error_unknown_body))
         })
         viewModel.notificationList.observe(viewLifecycleOwner, {
@@ -124,5 +139,6 @@ class NotificationFragment : BaseFragment() {
 
     private fun setLoading(loading: Boolean) {
         loadingView.visibility = if (loading) View.VISIBLE else View.GONE
+        rv_notification.isEnabled = !loading
     }
 }
