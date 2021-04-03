@@ -78,6 +78,7 @@ class DeliveryFragment : BaseFragment() {
     private fun lets() {
         initViewModel()
         initSwipeRefreshLayout()
+        getRetailInfo()
         initActivity()
         initRecyclerView()
         updateFeed()
@@ -132,7 +133,6 @@ class DeliveryFragment : BaseFragment() {
 
     private fun updateFeed() {
         setLoading(true)
-        getRetailInfo()
         getOrderActive()
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.getInitialPage()
