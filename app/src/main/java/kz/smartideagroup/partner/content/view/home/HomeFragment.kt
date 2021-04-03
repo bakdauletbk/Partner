@@ -83,7 +83,6 @@ class HomeFragment : BaseFragment() {
         })
     }
 
-
     private fun updateFeed() {
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.checkNetwork(requireContext())

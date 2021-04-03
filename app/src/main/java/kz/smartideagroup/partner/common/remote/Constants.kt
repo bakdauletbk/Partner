@@ -55,7 +55,7 @@ object Constants {
 
     //Put Extra Order
     const val ACCEPT_ORDER_ID = "ACCEPT_ORDER_ID"
-    const val ACCEPT_ORDER = "ACCEPT_ORDER"
+    const val ACCEPT_ORDER = "orderId"
 
     //Timer
     var TIME_LEFT_IN_MILLIS = 200000
@@ -109,4 +109,11 @@ object Constants {
     //Transaction minimum sum
     const val MIN_SUM = 30
     const val TRANSACTION_SUM = "TRANSACTION_SUM"
+
+    //
+    const val INTENT_NAV = "nav"
+    const val SDK_24 = 24
+    const val REQUEST_CODE = 2323
+    const val PACKAGE = "package:"
+
 }

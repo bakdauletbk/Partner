@@ -1,12 +1,21 @@
 package kz.smartideagroup.partner.content.view
 
+import android.app.Dialog
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
+import android.provider.Settings
+import android.view.View
+import android.view.Window
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_foundation.*
 import kotlinx.coroutines.CoroutineScope
@@ -14,6 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kz.smartideagroup.partner.R
 import kz.smartideagroup.partner.authorization.view.AuthorizationActivity
+import kz.smartideagroup.partner.common.remote.Constants
 import kz.smartideagroup.partner.common.views.BaseActivity
 import kz.smartideagroup.partner.content.model.request.home.SaveFirebaseTokenRequest
 import kz.smartideagroup.partner.content.viewmodel.FoundationViewModel
@@ -22,6 +32,8 @@ import org.jetbrains.anko.intentFor
 class FoundationActivity : BaseActivity() {
 
     private lateinit var viewModel: FoundationViewModel
+
+    private var alertDialog: Dialog? = null
 
     private var currentNavigationItemId = 0
 
@@ -60,6 +72,39 @@ class FoundationActivity : BaseActivity() {
                 }
             }
         })
+    }
+
+    override fun onResume() {
+        when (intent.getIntExtra(Constants.INTENT_NAV, Constants.ZERO) == Constants.ONE) {
+            true -> setNavigateDelivery()
+        }
+        if (Build.VERSION.SDK_INT >= Constants.SDK_24) {
+            if (!Settings.canDrawOverlays(this)) {
+                showOverlayPermissionAlert()
+            }
+        }
+        super.onResume()
+    }
+
+    private fun showOverlayPermissionAlert() {
+        alertDialog = Dialog(this)
+        alertDialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        alertDialog!!.setCancelable(false)
+        alertDialog!!.setContentView(R.layout.dialog_overlay)
+        val button: MaterialButton = alertDialog!!.findViewById(R.id.btn_go_settings)
+        button.setOnClickListener(View.OnClickListener {
+            try {
+                val intent = Intent(
+                    Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse(Constants.PACKAGE + this.packageName)
+                )
+                startActivityForResult(intent, Constants.REQUEST_CODE)
+            } catch (ex: Exception) {
+            }
+            alertDialog!!.dismiss()
+        })
+        alertDialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog!!.show()
     }
 
     private fun getFirebaseToken() {
@@ -111,6 +156,7 @@ class FoundationActivity : BaseActivity() {
     fun setReportsDelivery() {
         bottom_navigation.selectedItemId = R.id.menu_reportsFragment
     }
+
     fun setSettingsDelivery() {
         bottom_navigation.selectedItemId = R.id.menu_settingsFragment
     }

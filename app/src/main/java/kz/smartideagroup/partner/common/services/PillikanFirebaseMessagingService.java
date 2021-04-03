@@ -13,17 +13,13 @@ import android.os.Build;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
-
 import androidx.core.app.NotificationCompat;
-
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.Random;
-
 import kz.smartideagroup.partner.R;
 import kz.smartideagroup.partner.common.preference.SessionManager;
 import kz.smartideagroup.partner.common.remote.Constants;
@@ -32,6 +28,7 @@ import kz.smartideagroup.partner.content.view.accept_order.AcceptOrderActivity;
 import kz.smartideagroup.partner.content.view.accept_order.SuccessPaymentActivity;
 
 import static android.content.Intent.FLAG_ACTIVITY_MULTIPLE_TASK;
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class PillikanFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -44,19 +41,16 @@ public class PillikanFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     @Override
-    public void onNewToken(String s) {
+    public void onNewToken(@NotNull String s) {
         super.onNewToken(s);
         Log.d(TAG, s);
     }
-
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         SharedPreferences sharedPreferences = this.getSharedPreferences("sessionManager", Context.MODE_PRIVATE);
         sessionManager = new SessionManager(sharedPreferences);
-
         if (remoteMessage.getData().size() > Constants.ZERO) {
-            Log.e(TAG, "Message data payload: " + remoteMessage.getData().get(Constants.DATA));
             try {
                 if (remoteMessage.getNotification() != null) {
                     showNotification(remoteMessage);
@@ -66,27 +60,19 @@ public class PillikanFirebaseMessagingService extends FirebaseMessagingService {
                         int type = jsonObject.getInt(Constants.TYPE);
                         if (type == Constants.PUSH_DELIVERY) {
                             Intent intent = new Intent(this, AcceptOrderActivity.class);
-                            intent.putExtra(Constants.ORDER_ID, jsonObject.getInt(Constants.ORDER_ID));
-                            Log.d(Constants.PUSH_ORDER_ID, String.valueOf(jsonObject.getInt(Constants.ORDER_ID)));
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_MULTIPLE_TASK);
+                            intent.putExtra(Constants.ACCEPT_ORDER_ID, jsonObject.getInt(Constants.ORDER_ID));
+                            intent.setFlags(FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_MULTIPLE_TASK);
                             startActivity(intent);
                         } else if (type == Constants.PUSH_BY_MYSELF) {
-                            Intent intent = new Intent(this, SuccessPaymentActivity.class); //TO DO Change Activity Successful Payment
+                            Intent intent = new Intent(this, SuccessPaymentActivity.class);
                             intent.putExtra(Constants.NAME, jsonObject.getString(Constants.NAME));
-                            Log.d(Constants.PUSH_ORDER_NAME, jsonObject.getString(Constants.NAME));
-                            Log.d(Constants.PUSH_ORDER_PHONE, jsonObject.getString(Constants.PHONE));
                             intent.putExtra(Constants.PHONE, jsonObject.getString(Constants.PHONE));
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_MULTIPLE_TASK);
+                            intent.setFlags(FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_MULTIPLE_TASK);
                             startActivity(intent);
                         }
-                        return;
                     }
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            } catch (NumberFormatException e) {
+            } catch (JSONException | NullPointerException | NumberFormatException e) {
                 e.printStackTrace();
             }
         }
@@ -103,7 +89,7 @@ public class PillikanFirebaseMessagingService extends FirebaseMessagingService {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             PendingIntent pendingIntent = PendingIntent.getActivity(
                     getApplicationContext(),
-                    0,
+                    Constants.ZERO,
                     intent,
                     PendingIntent.FLAG_ONE_SHOT
             );

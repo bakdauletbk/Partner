@@ -2,6 +2,7 @@ package kz.smartideagroup.partner.content.view.accept_order
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -163,7 +164,9 @@ class ConfirmOrderFragment : BaseFragment() {
             when (it) {
                 true -> {
                     setLoading(false)
-                    startActivity(intentFor<FoundationActivity>())
+                    val intent = Intent(requireContext(), FoundationActivity::class.java)
+                    intent.putExtra(Constants.INTENT_NAV, Constants.ONE)
+                    startActivity(intent)
                 }
                 false -> {
                     setLoading(false)
@@ -231,6 +234,11 @@ class ConfirmOrderFragment : BaseFragment() {
     fun setLoading(loading: Boolean) {
         loadingViews.visibility = if (loading) View.VISIBLE else View.GONE
         btn_order_accept.isEnabled = !loading
+    }
+
+    override fun onDestroyView() {
+        countDownTimer.cancel()
+        super.onDestroyView()
     }
 
 }

@@ -43,13 +43,13 @@ class PreparationInProgressAdapter :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PreparationInProgressAdapter.ViewHolder {
+    ): ViewHolder {
         val root =
             LayoutInflater.from(parent.context).inflate(R.layout.item_runnig_cook, parent, false)
         return ViewHolder(root)
     }
 
-    override fun onBindViewHolder(holder: PreparationInProgressAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(orderDto = orderList[position], callback)
     }
 

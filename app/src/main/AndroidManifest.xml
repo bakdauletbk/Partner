@@ -57,6 +57,14 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="default_notification_channel_id" />
 
+        <receiver
+            android:name=".common.receiver.PushHandlerReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.example.UPDATE_STATUS" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

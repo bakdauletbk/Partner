@@ -238,11 +238,11 @@ class DeliveryFragment : BaseFragment() {
             when (it) {
                 true -> {
                     setLoading(false)
-                    when (reqOrderStatus?.status == 5 || reqOrderStatus?.status == 6) {
+                    when (reqOrderStatus?.status == Constants.ORDER_DELIVERED || reqOrderStatus?.status == Constants.ORDER_FINISH) {
                         true -> {
                             reqOrderStatus = null
-                            view?.let {
-                                Navigation.findNavController(it)
+                            view?.let {it1 ->
+                                Navigation.findNavController(it1)
                                     .navigate(R.id.deliveryFragment)
                             }
                         }
@@ -286,7 +286,7 @@ class DeliveryFragment : BaseFragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun addOrderActive(orderList : List<OrderDto>) {
+    private fun addOrderActive(orderList: List<OrderDto>) {
         setLoading(false)
         tv_performed.text = PERFORMED + orderList.size.toString() + ")"
         orderActiveAdapter.addOrderList(orderList)

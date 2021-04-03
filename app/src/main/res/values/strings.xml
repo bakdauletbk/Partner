@@ -104,5 +104,7 @@
     <string name="empty">Нет данных для отображения</string>
     <string name="close">Закрыть</string>
     <string name="the_payment_was_successful">Оплата прошла успешно!</string>
+    <string name="overlay">Для корректной работы приложения необходимо получить разрешение "Всегда сверху"</string>
+    <string name="go_to_settings">Перейти к настройкам</string>
 
 </resources>
