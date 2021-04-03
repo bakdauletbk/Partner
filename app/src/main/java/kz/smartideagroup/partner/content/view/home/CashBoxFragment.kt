@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.navigation.Navigation
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_cash_box.*
 import kz.smartideagroup.partner.R
 import kz.smartideagroup.partner.common.remote.Constants
@@ -61,18 +61,19 @@ class CashBoxFragment : BaseFragment() {
                                 .navigate(R.id.payFragment, bundle)
                         }
                     }
-                    false -> Toast.makeText(
-                        context,
+                    false -> Snackbar.make(
+                        requireView(),
                         getString(R.string.the_minimum_transaction_amount_for_one_purchase_is),
-                        Toast.LENGTH_LONG
+                        Snackbar.LENGTH_LONG
                     ).show()
                 }
             }
-            false -> Toast.makeText(
-                context,
-                getString(R.string.enter_the_amount),
-                Toast.LENGTH_SHORT
-            ).show()
+            false ->
+                Snackbar.make(
+                    requireView(),
+                    getString(R.string.enter_the_amount),
+                    Snackbar.LENGTH_LONG
+                ).show()
         }
 
     }
