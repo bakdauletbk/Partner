@@ -2,9 +2,7 @@ package kz.smartideagroup.partner.content.model.repository.delivery
 
 import android.app.Application
 import android.content.Context
-import android.os.Build
 import kz.smartideagroup.partner.BuildConfig
-import kz.smartideagroup.partner.common.models.Page
 import kz.smartideagroup.partner.common.models.PageOrder
 import kz.smartideagroup.partner.common.preference.SessionManager
 import kz.smartideagroup.partner.common.remote.Constants

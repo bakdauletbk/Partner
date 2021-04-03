@@ -20,7 +20,6 @@ import kotlinx.coroutines.launch
 import kz.smartideagroup.partner.R
 import kz.smartideagroup.partner.common.remote.Constants
 import kz.smartideagroup.partner.common.views.BaseFragment
-import kz.smartideagroup.partner.common.views.PaginationCompletedScrollListener
 import kz.smartideagroup.partner.common.views.utils.AlertDialog
 import kz.smartideagroup.partner.content.model.request.delivery.DeliveryStatusRequest
 import kz.smartideagroup.partner.content.model.request.delivery.ReqOrderStatus

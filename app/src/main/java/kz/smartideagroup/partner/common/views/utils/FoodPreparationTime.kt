@@ -85,7 +85,6 @@ open class FoodPreparationTime {
                         callback.getString(R.string.take_time_to_prepare_your_meal),
                         Toast.LENGTH_SHORT
                     ).show()
-
             }
         }
 

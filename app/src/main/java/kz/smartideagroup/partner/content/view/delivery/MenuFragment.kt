@@ -43,6 +43,7 @@ class MenuFragment : BaseFragment() {
 
     private var alertDialog: Dialog? = null
 
+    private var refreshTabLayout = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,17 +100,15 @@ class MenuFragment : BaseFragment() {
     }
 
     private fun initTabLayout(categoryItems: List<CategoriesItems>) {
-
-        tabLayout.visibility = View.VISIBLE
-        for (i in categoryItems.indices) {
-            tabLayout.addTab(tabLayout.newTab().setText(categoryItems[i].name))
+        when (refreshTabLayout) {
+            true -> {
+                tabLayout.visibility = View.VISIBLE
+                for (i in categoryItems.indices) {
+                    tabLayout.addTab(tabLayout.newTab().setText(categoryItems[i].name))
+                }
+                refreshTabLayout = false
+            }
         }
-
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {}
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
-            override fun onTabReselected(tab: TabLayout.Tab?) {}
-        })
     }
 
     private fun addFoods(foodItems: List<CategoriesItems>) {
@@ -154,8 +153,10 @@ class MenuFragment : BaseFragment() {
                         val tabSelectPosition = tabLayout.selectedTabPosition
                         manager.scrollToPositionWithOffset(tabSelectPosition, 0)
                     }
+
                     override fun onTabUnselected(tab: TabLayout.Tab?) {
                     }
+
                     override fun onTabReselected(tab: TabLayout.Tab?) {
                     }
                 })

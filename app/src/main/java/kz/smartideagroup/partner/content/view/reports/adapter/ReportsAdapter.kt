@@ -1,6 +1,7 @@
 package kz.smartideagroup.partner.content.view.reports.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,11 +9,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kz.smartideagroup.partner.R
-import kz.smartideagroup.partner.common.helpers.convertTimes
 import kz.smartideagroup.partner.common.remote.Constants
 import kz.smartideagroup.partner.content.model.response.reports.ReportsItems
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class ReportsAdapter(private val reportList: ArrayList<ReportsItems>) :
     RecyclerView.Adapter<ReportsAdapter.ViewHolder>() {
@@ -56,13 +57,14 @@ class ReportsAdapter(private val reportList: ArrayList<ReportsItems>) :
         reportList.realAmount.let {
             holder.tvRealAmount.text = it.toString()
         }
-//        reportList.createdAt.let {
-//            val calendar = convertTimes(it!!)
-//            holder.tvDate.text =
-//                calendar?.get(Calendar.DAY_OF_MONTH).toString() + Constants.DOT +
-//                        (calendar?.get(Calendar.MONTH)!!.plus(Constants.ONE)).toString() + Constants.DOT +
-//                        calendar.get(Calendar.YEAR).toString()
-//        }
+
+        reportList.createdAt.let {
+            val calendar = convertTime(it!!)
+            holder.tvDate.text =
+                calendar?.get(Calendar.DAY_OF_MONTH).toString() + Constants.DOT + (calendar?.get(
+                    Calendar.MONTH
+                )!! + Constants.ONE).toString() + Constants.DOT + calendar.get(Calendar.YEAR).toString()
+        }
     }
 
     override fun getItemCount(): Int {
@@ -72,11 +74,28 @@ class ReportsAdapter(private val reportList: ArrayList<ReportsItems>) :
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvName = itemView.findViewById(R.id.tv_name) as TextView
         val tvPhone = itemView.findViewById(R.id.tv_phone) as TextView
-        val tvCommission = itemView.findViewById(R.id.tv_commission) as TextView
         val tvDate = itemView.findViewById(R.id.tv_date) as TextView
         val tvAmount = itemView.findViewById(R.id.tv_amount) as TextView
         val tvCommissionAmount = itemView.findViewById(R.id.tv_commission_amount) as TextView
         val tvRealAmount = itemView.findViewById(R.id.tv_real_amount) as TextView
         val ivReports = itemView.findViewById(R.id.iv_reports) as ImageView
     }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun convertTime(time: String?): Calendar? {
+        Log.d("Constants", time!!)
+        val parser = SimpleDateFormat("dd-MM-yyyy")
+        parser.timeZone = TimeZone.getTimeZone("GMT+6")
+        parser.isLenient = false
+        var parsed: Date? = null
+        try {
+            parsed = parser.parse(time)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        val calendar = Calendar.getInstance()
+        calendar.time = parsed
+        return calendar
+    }
+
 }

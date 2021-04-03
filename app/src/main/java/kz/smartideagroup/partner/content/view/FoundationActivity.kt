@@ -29,6 +29,7 @@ import kz.smartideagroup.partner.content.model.request.home.SaveFirebaseTokenReq
 import kz.smartideagroup.partner.content.viewmodel.FoundationViewModel
 import org.jetbrains.anko.intentFor
 
+
 class FoundationActivity : BaseActivity() {
 
     private lateinit var viewModel: FoundationViewModel
@@ -98,6 +99,7 @@ class FoundationActivity : BaseActivity() {
                     Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                     Uri.parse(Constants.PACKAGE + this.packageName)
                 )
+
                 startActivityForResult(intent, Constants.REQUEST_CODE)
             } catch (ex: Exception) {
             }
@@ -106,6 +108,7 @@ class FoundationActivity : BaseActivity() {
         alertDialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog!!.show()
     }
+
 
     private fun getFirebaseToken() {
         FirebaseInstanceId.getInstance().instanceId
@@ -190,6 +193,5 @@ class FoundationActivity : BaseActivity() {
         findNavController(R.id.fragment)
             .navigate(R.id.deliveryFragment)
     }
-
 
 }

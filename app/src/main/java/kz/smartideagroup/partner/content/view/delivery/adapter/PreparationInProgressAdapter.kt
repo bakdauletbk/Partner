@@ -84,8 +84,10 @@ class PreparationInProgressAdapter :
                     rlProgress.visibility = View.GONE
                     view.visibility = View.VISIBLE
                     when (orderDto.type) {
-                        Constants.DELIVERY -> tvReadyFood.text = callback.getString(R.string.send_order)
-                        Constants.BY_MYSELF ->  tvReadyFood.text = callback.getString(R.string.transfer_to_client)
+                        Constants.DELIVERY -> tvReadyFood.text =
+                            callback.getString(R.string.send_order)
+                        Constants.BY_MYSELF -> tvReadyFood.text =
+                            callback.getString(R.string.transfer_to_client)
                     }
                 }
                 else -> {
@@ -142,7 +144,14 @@ class PreparationInProgressAdapter :
                         }
                         val minutes =
                             ((deadlineCook.time.time.minus(calendar.time.time)) / Constants.ONE_THOUSAND) / Constants.SIXTY
-                        tvTimer.text = minutes.toInt().toString()
+                        when (minutes >= Constants.ZERO) {
+                            true -> {
+                                tvTimer.text = minutes.toInt().toString()
+                            }
+                            false -> {
+                                tvTimer.text = Constants.ZERO_STRING
+                            }
+                        }
                     }
                 }
 
