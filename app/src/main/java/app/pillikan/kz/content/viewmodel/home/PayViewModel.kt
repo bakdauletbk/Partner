@@ -20,7 +20,6 @@ class PayViewModel(application: Application) : AndroidViewModel(application) {
         try {
             orderId.postValue(repository.getOrderId())
         } catch (e: NullPointerException) {
-            Log.e(TAG, "${e.message}")
         }
     }
 

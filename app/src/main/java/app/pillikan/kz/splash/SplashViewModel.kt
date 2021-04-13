@@ -36,7 +36,6 @@ class SplashViewModel(application: Application) : AndroidViewModel(application) 
             try {
                 isAuthorize.postValue(repository.checkAuthorize())
             } catch (e: Exception) {
-                Log.e(TAG, e.message.toString())
                 isError.postValue(true)
             }
         }

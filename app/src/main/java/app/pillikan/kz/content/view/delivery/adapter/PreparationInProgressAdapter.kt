@@ -160,7 +160,6 @@ class PreparationInProgressAdapter :
                 })
 
             } catch (e: Exception) {
-                Log.e(TAG, "setTimer: ${e.message}")
             }
         }
 

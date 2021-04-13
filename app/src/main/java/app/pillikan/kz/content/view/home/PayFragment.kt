@@ -2,7 +2,6 @@ package app.pillikan.kz.content.view.home
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -65,7 +64,6 @@ class PayFragment : BaseFragment() {
                 initQr(it)
             } else {
                 setLoading(false)
-                Log.d(TAG, "orderId null")
             }
         })
     }

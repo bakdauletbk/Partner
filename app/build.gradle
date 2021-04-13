@@ -15,8 +15,8 @@ android {
         applicationId "kz.pillikan.retailapp"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0.1"
+        versionCode 418
+        versionName "3.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -1,7 +1,6 @@
 package app.pillikan.kz.content.view.reports.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -83,7 +82,6 @@ class ReportsAdapter(private val reportList: ArrayList<ReportsItems>) :
 
     @SuppressLint("SimpleDateFormat")
     private fun convertTime(time: String?): Calendar? {
-        Log.d("Constants", time!!)
         val parser = SimpleDateFormat("dd-MM-yyyy")
         parser.timeZone = TimeZone.getTimeZone("GMT+6")
         parser.isLenient = false

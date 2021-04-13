@@ -203,7 +203,6 @@ class DetailPageFragment : BaseFragment() {
             tv_cook_time.text =
                 ((convertTimes(orderDto.cookingDeadline!!)!!.time.time - convertTimes(orderDto.createdAt!!)!!.time.time) / SECOND).toString() + MIN
         } catch (e: NullPointerException) {
-            Log.e(TAG, "setOrderCookTime: ${e.message}")
         }
     }
 

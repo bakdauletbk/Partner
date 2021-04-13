@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.text.Html;
 import android.text.Spanned;
-import android.util.Log;
 import androidx.core.app.NotificationCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -43,7 +42,6 @@ public class PillikanFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onNewToken(@NotNull String s) {
         super.onNewToken(s);
-        Log.d(TAG, s);
     }
 
     @Override

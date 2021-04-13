@@ -1,7 +1,6 @@
 package app.pillikan.kz.content.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -24,7 +23,6 @@ class FoundationViewModel(application: Application) : AndroidViewModel(applicati
         try {
             isAuthorize.postValue(repository.getIsAuthorize())
         } catch (e: NullPointerException) {
-            Log.e(TAG, e.message.toString())
         }
     }
 
@@ -33,7 +31,6 @@ class FoundationViewModel(application: Application) : AndroidViewModel(applicati
             try {
                 isSendFToken.postValue(repository.sendFireBaseToken(saveFirebaseTokenRequest))
             } catch (e: Exception) {
-                Log.e(TAG, e.message.toString())
             }
         }
     }

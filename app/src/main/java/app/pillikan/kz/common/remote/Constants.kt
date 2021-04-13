@@ -1,7 +1,8 @@
 package app.pillikan.kz.common.remote
 
 object Constants {
-    const val BASE_URL = "https://java.pillikan.org.kz"
+//    const val BASE_URL = "https://java.pillikan.org.kz"
+    const val BASE_URL = "https://java.pillikan.kz"
     const val BASE_IMAGE_URL = "https://st.pillikan.kz//delivery/"
     const val CLIENT_ID = "cmV0YWls"
     const val DEFAULT_NOTIFICATION_CHANNEL_ID = "default_notification_channel_id"

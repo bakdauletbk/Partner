@@ -1,7 +1,5 @@
 package app.pillikan.kz.common.views;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,9 +25,7 @@ public abstract class PaginationCompletedScrollListener extends RecyclerView.OnS
 
         // Check if the next page is not currently loading and if we actually have the next page.
 
-        Log.d("Scrollsss", "isLoading:" + isLoading() + "   -  isLastPage:" + isLastPage());
         if (!isLoading() && !isLastPage()) {
-            Log.d("Scrollq", "isLoading:" + isLoading() + "   -  isLastPage:" + isLastPage());
             int visibleItemsCount        = layoutManager.getChildCount();
             int totalItemsCount          = layoutManager.getItemCount();
             int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
