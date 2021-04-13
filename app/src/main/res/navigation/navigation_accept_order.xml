@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/confirmOrderFragment"
-        android:name="kz.smartideagroup.partner.content.view.accept_order.ConfirmOrderFragment"
+        android:name="app.pillikan.kz.content.view.accept_order.ConfirmOrderFragment"
         android:label="ConfirmOrderFragment"
         tools:layout="@layout/fragment_confirm_order"/>
     <fragment
         android:id="@+id/acceptOrderFragment"
-        android:name="kz.smartideagroup.partner.content.view.accept_order.AcceptOrderFragment"
+        android:name="app.pillikan.kz.content.view.accept_order.AcceptOrderFragment"
         android:label="AcceptOrderFragment"
         tools:layout="@layout/fragment_accept_order">
         <action

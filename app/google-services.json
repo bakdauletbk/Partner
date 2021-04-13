@@ -41,42 +41,6 @@
           ]
         }
       }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:530973115446:android:fe912c72b8964d23914497",
-        "android_client_info": {
-          "package_name": "kz.smartideagroup.partner"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "530973115446-g824otrc082l7nd9j4nmqdb1157f5524.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBKLu-ZgCRB6YLBfkoca9c2ea7x_jvz_DQ"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "530973115446-g824otrc082l7nd9j4nmqdb1157f5524.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "530973115446-07ai5c24q65o46utm4mt1t7d1alb5fsj.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "kz.pillikan.partner"
-              }
-            }
-          ]
-        }
-      }
     }
   ],
   "configuration_version": "1"

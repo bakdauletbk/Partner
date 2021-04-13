@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="kz.smartideagroup.partner">
+    package="app.pillikan.kz">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:name=".App"
+        android:name="app.pillikan.kz.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -18,11 +18,11 @@
         android:theme="@style/Theme.Partner">
 
         <activity
-            android:name=".content.view.FoundationActivity"
+            android:name="app.pillikan.kz.content.view.FoundationActivity"
             android:configChanges="orientation|screenSize" />
 
         <activity
-            android:name=".splash.SplashActivity"
+            android:name="app.pillikan.kz.splash.SplashActivity"
             android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,15 +31,15 @@
         </activity>
 
         <activity
-            android:name=".content.view.accept_order.AcceptOrderActivity"
+            android:name="app.pillikan.kz.content.view.accept_order.AcceptOrderActivity"
             android:configChanges="orientation|screenSize" />
 
         <activity
-            android:name=".authorization.view.AuthorizationActivity"
+            android:name="app.pillikan.kz.authorization.view.AuthorizationActivity"
             android:configChanges="orientation|screenSize" />
 
         <service
-            android:name=".common.services.PillikanFirebaseMessagingService"
+            android:name="app.pillikan.kz.common.services.PillikanFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

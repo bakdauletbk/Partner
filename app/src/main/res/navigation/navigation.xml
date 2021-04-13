@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="kz.smartideagroup.partner.content.view.home.HomeFragment"
+        android:name="app.pillikan.kz.content.view.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/deliveryFragment"
-        android:name="kz.smartideagroup.partner.content.view.delivery.DeliveryFragment"
+        android:name="app.pillikan.kz.content.view.delivery.DeliveryFragment"
         android:label="DeliveryFragment"
         tools:layout="@layout/fragment_delivery">
         <action
@@ -28,17 +28,17 @@
     </fragment>
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="kz.smartideagroup.partner.content.view.notification.NotificationFragment"
+        android:name="app.pillikan.kz.content.view.notification.NotificationFragment"
         android:label="NotificationFragment"
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/reportsFragment"
-        android:name="kz.smartideagroup.partner.content.view.reports.ReportsFragment"
+        android:name="app.pillikan.kz.content.view.reports.ReportsFragment"
         android:label="ReportsFragment"
         tools:layout="@layout/fragment_reports" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="kz.smartideagroup.partner.content.view.settings.SettingsFragment"
+        android:name="app.pillikan.kz.content.view.settings.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/fragment_settings">
         <action
@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/cashBoxFragment"
-        android:name="kz.smartideagroup.partner.content.view.home.CashBoxFragment"
+        android:name="app.pillikan.kz.content.view.home.CashBoxFragment"
         android:label="CashBoxFragment"
         tools:layout="@layout/fragment_cash_box">
         <action
@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
-        android:name="kz.smartideagroup.partner.content.view.delivery.MenuFragment"
+        android:name="app.pillikan.kz.content.view.delivery.MenuFragment"
         android:label="MenuFragment"
         tools:layout="@layout/fragment_menu">
         <action
@@ -66,16 +66,16 @@
     <fragment
         android:id="@+id/aboutUsFragment"
         tools:layout="@layout/fragment_about_us"
-        android:name="kz.smartideagroup.partner.content.view.settings.AboutUsFragment"
+        android:name="app.pillikan.kz.content.view.settings.AboutUsFragment"
         android:label="AboutUsFragment" />
     <fragment
         android:id="@+id/detailPageFragment"
         tools:layout="@layout/fragment_detail_page"
-        android:name="kz.smartideagroup.partner.content.view.delivery.DetailPageFragment"
+        android:name="app.pillikan.kz.content.view.delivery.DetailPageFragment"
         android:label="DetailPageFragment" />
     <fragment
         android:id="@+id/payFragment"
-        android:name="kz.smartideagroup.partner.content.view.home.PayFragment"
+        android:name="app.pillikan.kz.content.view.home.PayFragment"
         android:label="PayFragment"
         tools:layout="@layout/fragment_pay" />
 </navigation>
