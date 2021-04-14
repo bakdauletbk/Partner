@@ -9,6 +9,10 @@ object Constants {
     const val CONTENT_TYPE = "application/json"
 
     const val RESPONSE_SUCCESS_CODE = 200
+    const val UPDATE_APP = 406
+
+    const val URI_PLAY_MARKET = "market://details?id="
+    const val URI_APP = "https://play.google.com/store/apps/details?id="
 
     const val PAGE_LIMIT = 10
 
@@ -20,9 +24,6 @@ object Constants {
     const val DATA = "data"
     const val PHONE = "phone"
     const val ORDER_ID = "orderId"
-    const val PUSH_ORDER_ID = "PushOrderId"
-    const val PUSH_ORDER_NAME = "PushPayName"
-    const val PUSH_ORDER_PHONE = "PushPayPhone"
     const val PUSH_DELIVERY = 3
     const val PUSH_BY_MYSELF = 2
 
@@ -108,6 +109,7 @@ object Constants {
     const val EIGHT_STRING = "8"
     const val NINE_STRING = "9"
     const val ZERO_STRING = "0"
+    const val ZERO_EMPTY = "(0)"
 
     //Transaction minimum sum
     const val MIN_SUM = 30

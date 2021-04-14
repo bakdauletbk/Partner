@@ -111,7 +111,6 @@ class DeliveryFragment : BaseFragment() {
         }
 
         rv_order_finish.adapter = orderCompletedAdapter
-
         setPagination()
     }
 
@@ -206,27 +205,28 @@ class DeliveryFragment : BaseFragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initObservers() {
         viewModel.isError.observe(viewLifecycleOwner, {
             setLoading(false)
             showErrorDialog(getString(R.string.error_no_internet_msg))
         })
         viewModel.orderActive.observe(viewLifecycleOwner, {
-            when (it) {
-                null -> {
+            when (it != null) {
+                false -> {
                     setLoading(false)
-                    showErrorDialog(getString(R.string.error_failed_connection_to_server))
+                    rv_order_active.visibility = View.GONE
                 }
-                else -> addOrderActive(it)
+                true -> addOrderActive(it)
             }
         })
         viewModel.retailInfo.observe(viewLifecycleOwner, {
-            when (it) {
-                null -> {
+            when (it != null) {
+                false -> {
                     setLoading(false)
                     showErrorDialog(getString(R.string.error_failed_connection_to_server))
                 }
-                else -> {
+                true -> {
                     setLoading(false)
                     setRetailInfo(it)
                 }
@@ -245,12 +245,13 @@ class DeliveryFragment : BaseFragment() {
             }
         })
         viewModel.orderCompletedList.observe(viewLifecycleOwner, {
-            when (it) {
-                null -> {
+            when (it != null) {
+                false -> {
                     setLoading(false)
-                    showErrorDialog(getString(R.string.error_failed_connection_to_server))
+                    rv_order_finish.visibility = View.GONE
+                    tv_completed.text = getString(R.string.finish) + Constants.ZERO_EMPTY
                 }
-                else -> addOrderCompleted(it)
+                true -> addOrderCompleted(it)
 
             }
         })

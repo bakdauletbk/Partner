@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +34,6 @@ import app.pillikan.kz.content.model.response.delivery.DishDto
 import app.pillikan.kz.content.view.delivery.adapter.HeaderAdapter
 import app.pillikan.kz.content.viewmodel.delivery.MenuViewModel
 import org.jetbrains.anko.sdk27.coroutines.onClick
-
 
 class MenuFragment : BaseFragment() {
 
@@ -90,9 +90,9 @@ class MenuFragment : BaseFragment() {
             errorDialog(getString(R.string.error_no_internet_msg))
         })
         viewModel.foodList.observe(viewLifecycleOwner, {
-            when (it) {
-                null -> hideMenuFood()
-                else -> addFoods(it)
+            when (it != null) {
+                true -> addFoods(it)
+                false -> hideMenuFood()
             }
         })
         viewModel.isSendStatus.observe(viewLifecycleOwner, {
@@ -122,16 +122,17 @@ class MenuFragment : BaseFragment() {
         }
     }
 
-    private fun addFoods(foodItems: List<CategoriesItems>) {
+    private fun addFoods(categoryItems: List<CategoriesItems>) {
         setLoading(false)
-        initTabLayout(foodItems)
-        foodAdapter.addFoods(foodItems)
+        Log.d("Ermahan", "YES")
+        initTabLayout(categoryItems)
+        foodAdapter.addFoods(categoryItems)
     }
 
     private fun hideMenuFood() {
         setLoading(false)
-        errorDialog(getString(R.string.error_failed_connection_to_server))
-        rv_foods.visibility = View.GONE
+        Log.d("Ermahan", "NO")
+        swipe_refresh_layout.visibility = View.GONE
     }
 
     private fun initViewModel() {

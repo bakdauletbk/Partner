@@ -7,6 +7,8 @@ import app.pillikan.kz.common.preference.SessionManager
 import app.pillikan.kz.common.remote.Constants
 import app.pillikan.kz.common.remote.Networking
 import app.pillikan.kz.content.model.request.home.SaveFirebaseTokenRequest
+import okhttp3.ResponseBody
+import retrofit2.Response
 
 class FoundationRepository(application: Application) {
 
@@ -18,14 +20,13 @@ class FoundationRepository(application: Application) {
 
     fun getIsAuthorize(): Boolean = sessionManager.getIsAuthorize()!!
 
-    suspend fun sendFireBaseToken(saveFireBase: SaveFirebaseTokenRequest): Boolean {
-        val response = networkService.sendFirebaseToken(
+    suspend fun sendFireBaseToken(saveFireBase: SaveFirebaseTokenRequest): Response<ResponseBody> {
+        return networkService.sendFirebaseToken(
             token = sessionManager.getToken().toString(),
             appver = BuildConfig.VERSION_NAME,
             contentType = Constants.CONTENT_TYPE,
             clientId = Constants.CLIENT_ID,
             saveFirebaseTokenRequest = saveFireBase
         )
-        return response.code() == Constants.RESPONSE_SUCCESS_CODE
     }
 }

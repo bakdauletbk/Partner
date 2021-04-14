@@ -35,6 +35,7 @@ class AuthorizationActivity : BaseActivity() {
 
     private fun initObservers() {
         viewModel.isError.observe(this, {
+            setLoading(false)
             errorDialog(getString(R.string.error_unknown_body))
         })
 
@@ -53,7 +54,18 @@ class AuthorizationActivity : BaseActivity() {
                     finish()
                 }
                 false -> onSuccessFullDialog()
-
+            }
+        })
+        viewModel.isUpdateApp.observe(this, {
+            when (it) {
+                true -> {
+                    setLoading(false)
+                    showAlertDialog(
+                        this,
+                        getString(R.string.our_application_has_been_updated_please_update),
+                        true
+                    )
+                }
             }
         })
     }
@@ -83,7 +95,7 @@ class AuthorizationActivity : BaseActivity() {
             }
             false -> Toast.makeText(
                 this,
-                "Введенные вами данные некорректны!",
+                getString(R.string.the_data_you_entered_is_incorrect),
                 Toast.LENGTH_LONG
             ).show()
         }

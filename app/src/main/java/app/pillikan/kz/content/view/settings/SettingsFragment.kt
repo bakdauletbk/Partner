@@ -58,7 +58,10 @@ class SettingsFragment : BaseFragment() {
         })
         viewModel.logout.observe(viewLifecycleOwner, {
             when (it) {
-                true -> startActivity(intentFor<AuthorizationActivity>())
+                true -> {
+                    startActivity(intentFor<AuthorizationActivity>())
+                    activity?.finish()
+                }
                 false -> Toast.makeText(
                     context,
                     getString(R.string.error_while_logging_out_of_profile),

@@ -144,8 +144,8 @@ class ConfirmOrderFragment : BaseFragment() {
             errorDialog(getString(R.string.error_no_internet_msg))
         })
         viewModel.order.observe(viewLifecycleOwner, {
-            when (it) {
-                null -> {
+            when (it != null) {
+                false -> {
                     setLoading(false)
                     Toast.makeText(
                         context,
@@ -153,7 +153,7 @@ class ConfirmOrderFragment : BaseFragment() {
                         Toast.LENGTH_LONG
                     ).show()
                 }
-                else -> {
+                true -> {
                     setLoading(false)
                     setOrderInfo(it)
                 }

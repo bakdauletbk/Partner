@@ -61,7 +61,7 @@ class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.ViewHolder> {
                     GridLayoutManager.VERTICAL,
                     false
                 )
-                adapter = FoodMenuAdapter(callback, categoriesItems.dishes)
+                adapter = FoodMenuAdapter(callback, categoriesItems.dishes!!)
                 setRecycledViewPool(viewPool)
             }
 

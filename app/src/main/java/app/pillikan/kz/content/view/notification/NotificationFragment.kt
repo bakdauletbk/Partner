@@ -75,12 +75,15 @@ class NotificationFragment : BaseFragment() {
             override fun totalCount(): Int {
                 return viewModel.totalCount()
             }
+
             override fun currentCount(): Int {
                 return currentCount
             }
+
             override fun isLoading(): Boolean {
                 return viewModel.isLoading()
             }
+
             override fun loadMoreItems() {
                 setLoading(true)
                 CoroutineScope(Dispatchers.IO).launch {
@@ -97,9 +100,9 @@ class NotificationFragment : BaseFragment() {
             errorDialog(getString(R.string.error_unknown_body))
         })
         viewModel.notificationList.observe(viewLifecycleOwner, {
-            when (it) {
-                null -> setEmptyReports()
-                else -> addNotifications(it)
+            when (it != null) {
+                false -> setEmptyReports()
+                true -> addNotifications(it)
             }
         })
     }

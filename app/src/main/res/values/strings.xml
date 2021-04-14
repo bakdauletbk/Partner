@@ -65,6 +65,10 @@
     <string name="no_printer_found">Устройство для печати не найдено!</string>
     <string name="the_minimum_transaction_amount_for_one_purchase_is">Минимальная сумма транзации для одной покупки - 30 тенге.</string>
     <string name="enter_the_amount">Введите сумму!</string>
+    <string name="you_are_logged_in_under_your_account_on_another_device">Под вашим Аккаунтом вошли на другом устройстве!</string>
+    <string name="our_application_has_been_updated_please_update">Вышло обновление нашего приложения. Пожалуйста обновите!</string>
+    <string name="update_app">Обновить приложение</string>
+    <string name="oops">Упс</string>
 
     //Диалог
     <string name="dialog_retry">Ещё раз</string>
@@ -106,5 +110,6 @@
     <string name="the_payment_was_successful">Оплата прошла успешно!</string>
     <string name="overlay">Для корректной работы приложения необходимо получить разрешение "Всегда сверху"</string>
     <string name="go_to_settings">Перейти к настройкам</string>
+    <string name="the_data_you_entered_is_incorrect">Введенные вами данные некорректны!</string>
 
 </resources>

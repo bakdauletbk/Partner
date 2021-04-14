@@ -22,9 +22,11 @@ class MenuRepository(application: Application) {
         val response = networkService.getCategories(
             sessionManager.getToken().toString()
         )
-        return when (response.code() == Constants.RESPONSE_SUCCESS_CODE) {
-            true -> response.body()?.categories
-            false -> null
+
+        return if (response.code() == Constants.RESPONSE_SUCCESS_CODE) {
+            response.body()?.categories
+        } else {
+            null
         }
     }
 

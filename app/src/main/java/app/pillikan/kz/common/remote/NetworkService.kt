@@ -64,7 +64,7 @@ interface NetworkService {
     @GET(EndPoints.GET_CATEGORIES)
     suspend fun getCategories(
         @Header("authorization") token: String
-    ): Response<CategoriesResponse>
+    ): Response<CategoriesResponse?>
 
     @POST(EndPoints.POST_STATUS_RETAIL)
     suspend fun setDeliveryStatus(

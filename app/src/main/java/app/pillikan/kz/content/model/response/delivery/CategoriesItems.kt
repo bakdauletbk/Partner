@@ -8,5 +8,5 @@ data class CategoriesItems(
     @SerializedName("name")
     val name: String? = null,
     @SerializedName("dishes")
-    val dishes : ArrayList<DishDto>
+    val dishes : ArrayList<DishDto>?
 )

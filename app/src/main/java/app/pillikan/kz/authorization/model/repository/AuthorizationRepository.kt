@@ -9,8 +9,9 @@ import app.pillikan.kz.common.helpers.NetworkHelpers
 import app.pillikan.kz.common.preference.SessionManager
 import app.pillikan.kz.common.remote.Constants
 import app.pillikan.kz.common.remote.Networking
+import retrofit2.Response
 
-class AuthorizationRepository(application: Application) {
+class AuthorizationRepository(val application: Application) {
 
     private val networkService =
         Networking.create(Constants.BASE_URL)
@@ -23,22 +24,15 @@ class AuthorizationRepository(application: Application) {
         return NetworkHelpers.isNetworkConection(context)
     }
 
-    suspend fun signIn(loginBodyRequest: LoginBodyRequest): Boolean {
-        val response = networkService.signIn(
+    suspend fun signIn(loginBodyRequest: LoginBodyRequest): Response<RetailInfoResponse> {
+        return networkService.signIn(
             appVer = BuildConfig.VERSION_NAME,
             clientId = Constants.CLIENT_ID,
             loginBodyRequest = loginBodyRequest
         )
-        return if (response.code() == Constants.RESPONSE_SUCCESS_CODE) {
-            saveUser(response.body()!!)
-            true
-        } else {
-            sessionManager.clear()
-            false
-        }
     }
 
-    private fun saveUser(body: RetailInfoResponse) {
+    fun saveUser(body: RetailInfoResponse) {
         sessionManager.setRetailName(body.name)
         sessionManager.setToken("Bearer " + body.token!!.accessToken)
         sessionManager.setIsAuthorize(true)

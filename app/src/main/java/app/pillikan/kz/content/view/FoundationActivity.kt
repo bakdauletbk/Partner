@@ -72,6 +72,16 @@ class FoundationActivity : BaseActivity() {
                 }
             }
         })
+        viewModel.isUpdateApp.observe(this, {
+            when (it) {
+                true -> showAlertDialog(
+                    this,
+                    getString(R.string.our_application_has_been_updated_please_update),
+                    true
+                )
+
+            }
+        })
     }
 
     override fun onResume() {
